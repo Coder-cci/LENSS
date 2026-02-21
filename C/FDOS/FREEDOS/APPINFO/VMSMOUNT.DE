@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       VMSMOUNT
+Description: Mountet von VMware freigegebene Ordner.
+Summary:     Ein DOS Redirektor fÅr das Mounten der von VMware freigegebenen Ordner. Damit kînnen Sie unter VMWare Daten vom Host an DOS durchreichen",vmware,DOS,GNU General Public License
+Keywords:     Version 2"
+End

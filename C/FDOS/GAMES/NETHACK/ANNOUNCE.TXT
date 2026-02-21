@@ -1,0 +1,59 @@
+The NetHack DevTeam is announcing the release of NetHack 3.6.7 on
+February 16, 2023
+
+NetHack 3.6.7 is the official release of NetHack that follows NetHack 3.6.6.
+
+This release primarily corrects a security issue present in NetHack 
+versions 3.6.2, 3.6.3, 3.6.4, 3.6.5, and 3.6.6. 
+For details about the security issues please see https://www.nethack.org/security.
+You are encouraged to update to NetHack 3.6.7 as soon as possible.
+
+Here's a brief synopsis of the handful of bug fixes included in NetHack 3.6.7:
+
+ -  invalid status highlight color could be maliciously used to corrupt memory
+ -  formatting corpse names used internal buffers differently from formatting
+        other objects and could potentially clobber memory
+ -  during engraving, spaces were counted instead of non-space (cherry-pick of
+        4e0a1e04 from NetHack-3.7)
+ -  avoid potential buffer overflow in append_str()
+ -  resolve missing dependency in NetHack.sln
+ -  code in include/tradstdc.h was trying to suppress warn_unused result by
+        defining warn_unused_result to an empty string and that began causing
+        a build error within a system-supplied header file cdefs.h when using
+        Ubuntu Impish 21.10; disable that for any Linux and macOS gcc unless
+        GCC_URWARN is defined to force it back into effect
+ -  update_inventory() after leash goes slack
+ -  player assigned name for monsters, specific objects, or object types could be
+        longer than what was intented to be allowed; for 'curses', much longer
+ -  Windows: added winflexbison to travis-ci configuration to permit full build of
+             levcomp and dgncomp
+ -  Windows: a bad chdir specified in win/win32/dgnstuff.mak caused full build to
+             abort
+ -  Windows: the console.rc file had outdated information stating 3.6.3 when the
+             official 3.6.6 binary had been built.
+ -  Windows: switch from using keyhandling dll's to incorporating the three 
+             variations (default, ray, 340) in sys/winnt/nttty.c
+ -  curses: cherry-picked selectsaved code from 3.7 for menu of save files
+ -  NetHackW: fix delayed rendering of cursor when using farlook
+
+All of the fixes have been published on the public Git repository for the game.
+A more complete list can be found in the game's sources in doc/fixes36.7. As usual,
+a warning that some entries in that file may also be "spoilers".
+
+Existing saved games and bones files from 3.6.0 through to 3.6.6 should work with
+3.6.7, assuming that the same build configuration options were used with
+the same compiler.
+
+Checksums (sha256) of binaries that you have downloaded from nethack.org
+can be verified on Windows platforms using:
+    certUtil -hashfile nethack-367-win-x86.zip SHA256
+
+The following command can be used on most platforms to help confirm the location of
+various files that NetHack may use:
+    nethack --showpaths
+
+As with all releases of the game, we appreciate your feedback. Please submit any
+bugs using the problem report form. Also, please check the "known bugs" list
+before you log a problem - somebody else may have already found it.
+
+Happy NetHacking!

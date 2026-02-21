@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       NTOOL
+Description: Une incarnation du c‚lŠbre programme NETCAT
+Summary:     NTOOL est simplement une autre incarnation du c‚lŠbre programme NETCAT, bas‚e sur la pile WatTCP.
+Keywords:    ntool,netcat
+End

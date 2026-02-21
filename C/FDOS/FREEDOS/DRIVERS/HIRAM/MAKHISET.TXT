@@ -1,0 +1,233 @@
+	ÄÒÄ	 ÄÒÄ   Ò   ÖÄÄÄÄÄÄ· ÖÄÄÄÄÄ·  ÖÄÄÄÒÄÄÄ·
+	  º	  º    Ğ   º	    º		 º
+	  º	  º	   º	    º		 º
+	  ÇÄÄÄÄÄÄÄ¶   Ä·   ÓÄÄÄÄÄÄ· ÇÄÄÄÄ	 º
+	  º	  º    º	  º º		 º
+	  º	  º    º	  º º		 º
+	ÄĞÄ	 ÄĞÄ  ÄĞÄ  ÓÄÄÄÄÄÄ½ ÓÄÄÄÄÄ½	ÄĞÄ	V1.3
+
+		Copyright (C) 1993 by JVP
+
+
+
+Dieses Paket darf (und soll) frei kopiert und weitergegeben werden (denn Gutes
+muá  nicht teuer  sein), sofern  die alle  in ReadMe.1st  aufgefhrten Dateien
+unver„ndert darin enthalten sind.
+
+Eine (private oder kommerzielle) Verwendung unterliegt folgenden Bedingungen:
+- bei	erfolgreichem Einsatz  werden das   Programm und  sein Autor  bei sich
+  bietenden Gelegenheiten lobend erw„hnt.
+- eine Verwendung in kommerziellen Produkten  sowie das Bundling mit Hard- und
+  Software ist generell untersagt.
+- ein	 Verkauf  dieser   Software  ist   ausdrcklich  untersagt,  Disketten-
+  Kopiergebhren sind hiervon ausgenommen.
+
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	!! Die in diesem Paket  enthaltenen Programme wurden nach bestem !!
+	!! Wissen auf ihre Funktionsf„higkeit  geprft und sollten unter !!
+	!! den   unten   aufgefhrten   Einsatzbedingungen   einwandfrei !!
+	!! funktionieren. Eine Garantie dafr wird nicht bernommen.     !!
+	!!							         !!
+	!! Da  die  Nutzung  der Programme  kostenlos  ist, erfolgt ihr  !!
+	!! Einsatz auf eigene Gefahr.					 !!
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+ACHTUNG
+ÍÍÍÍÍÍÍ
+
+Erstellen  Sie vor  der ersten  Verwendung von  HiSET.SYS auf	jeden Fall eine
+bootf„hige DOS-Diskette. Informieren Sie sich im Falle der Verwendung von
+- DR-DOS  ber die  Verwendung des "?"-Befehls  in der CONFIG.SYS.
+- MS-DOS  6.0	ber  die  Verwendung	der  Tasten  F5/F8  zum  šbergehen  der
+  Startdateien CONFIG.SYS und AUTOEXEC.BAT.
+
+
+HiSET.SYS
+ÍÍÍÍÍÍÍÍÍ
+
+ ist ein  Chipsatz-spezifischer Device-Treiber und  dient dazu, auf  NEAT- bzw.
+ 386/486er PCs die Einblendung von RAM	in der UMA vorzunehmen, da viele Setups
+ dies nicht untersttzen. Der Treiber muá  zuvor aus einer Skript-Datei mit dem
+ Compiler MakHiSET.EXE erzeugt werden. Dies erfolgt mit dem Aufruf
+
+	MakHiSET [PATH\]SCRIPT[.SCR]
+
+ wobei die Datei  HiSET.SYS im Verzeichnis der Skriptdatei  erzeugt wird. Diese
+ ist in der CONFIG.SYS vor HiRAM.EXE (s. HiRAM.TXT) mit
+
+	DEVICE = [PATH\]HiSET.SYS
+
+ einzubinden, um die  UMBs, die mit HiRAM eingebunden  werden sollen, berhaupt
+ zu erzeugen.
+
+ Ist der verwendete Chipsatz nicht dem Handbuch zum PC zu entnehmen, so kann er
+ auf verschiedene Arten ermittelt werden:
+
+ - beim  neueren (bunten)  AMI-BIOS erscheint  beim Boot-Vorgang  in einer  der
+   unteren Bildschirmzeilen eine Anzeige  in der Form "xx-xxxxx-...xx-CHIPSET".
+   CHIPSET nennt den Namen des Chipsatzes, z.B. UMCAUTO, ETEQ o.„.
+
+ - nach  dem  Aufschrauben  des  PC  sind  auf	dem  Motherboard  neben der CPU
+   (erkennbar  an  der	Aufschrift  386-33  o.	486-33	o.„.) mehrere Chips mit
+   „hnlich vielen Beinchen wie die CPU selbst zu finden. Diese tragen neben dem
+   Herstellernamen (OPTi, CHIPs o.„.) auch Nummern in der Form 85Cxxx, die sich
+   auch im Header der Skriptdateien finden sollten.
+
+ Die  mitgelieferten Skript-Dateien  sind alle	fr das  Einblenden von  RAM im
+ Bereich C800h - EFFFh ausgelegt, also fr ein normales PC-System mit VGA-Karte
+ mit BIOS im Bereich C000h - C7FFh. Die Skripts OPTi482.SCR und UMCAUTO.SCR und
+ die  daraus   erzeugten  HiSET.SYS  sind   ausgiebig  getestet,  die	anderen
+ Skriptdateien sind aus  den Informationen in [4] -[  6] zusammengestellt, aber
+ nicht getestet.
+
+ Falls sich bei den mitgelieferten  Skriptdateien die ben”tigte findet, so sind
+ die folgenden Informationen nicht erforderlich.
+
+
+ Erstellen  eigener Skriptdateien
+ ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ
+
+ Hierfr sind natrlich Unterlagen  ber den verwendeten Chipsatz erforderlich.
+ Da die  Anzahl der verwendbaren  Ports im PC  begrenzt ist, andererseits  aber
+ viele Informationen untergebracht werden  sollen, werden einige Ports mehrfach
+ verwendet. Allgemein  existiert fr die  Chipsatzprogrammierung ein Port-Paar,
+ das aus Indexregister und Datenregister besteht. Das Indexregister wird zuerst
+ mit der Nummer  des internen Registers beschrieben, in  das die Daten gelangen
+ sollen. Danach  wird an den  Datenport die eigentlichen  Daten ausgegeben, die
+ nun an das interne Register geleitet werden.
+
+ Im folgenden Bild wird
+
+ - an den INDEXPORT der Wert INDEX ausgegeben (hier 2). Dadurch wird intern die
+   Verbindung vom DATAPORT zum internen Register 2 hergestellt.
+
+ - an den DATAPORT ein Wert DATA  ausgegeben. Dieser gelangt nun ber die zuvor
+   erstellte Verbindung in das interne Register 2.
+
+
+     extern	|   intern
+		|
+		|
+		ÉÍÍÍÍÍÍÍÍÍÍÍ»
+     INDEX ÄÄÄÄÄ> INDEXPORT º
+		ÈÍÍÍÍÍÑÍÍÍÍÍ¼
+		|     ÀÄÄÄÄÄÄÄÄÄÄÄÄ¿
+		|	     ÚÄ>   ³	 Ä> Index 0
+		|	     ÃÄ>   ³	 Ä> Index 1	zu
+		ÉÍÍÍÍÍÍÍÍÍÍ» ÃÄ>ÄÄÄÏÄÄÄÄ Ä> Index 2	den
+     DATA ÄÄÄÄÄÄ> DATAPORT ÇÄÅÄ>	 Ä> Index 3  internen
+		ÈÍÍÍÍÍÍÍÍÍÍ¼ ÃÄ>	 Ä> Index 4  Registern
+		|	     ÃÄ>	 Ä> Index 5
+		|	     ÀÄ>	 Ä> Index 6
+
+ Registerzugriffe stellen also immer in  Befehlspaar dar: zuerst die Angabe des
+ gewnschten Zielregisters, danach die Ausgabe der entsprechenden Daten.
+
+
+ Skript-Sprache:
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ Da  MakHiSET	ein  Primitiv-Compiler	ist,  gestaltet   sich	die  verwendete
+ Skriptsprache	entsprechend  einfach.	Jede  Zeile  besteht  jeweils aus einem
+ Schlsselwort, gefolgt von einem Gleichheitszeichen und einem Wert.
+
+ Werte k”nnen dezimal,	hexadezimal oder bin„r angegeben werden.  Auáer bei dem
+ Schlsselwort	RAMINIT handelt  es sich  bei allen  Werten um	Bytes, d.h. der
+ Wertebereich liegt bei 0..255. Folgende Zahlendarstellungen sind identisch:
+
+	111b, 00000111b, 7, 7h, 07h.
+
+ Bei bin„ren  Werten bedeutet die Angabe  eines "x", daá das  entsprechende Bit
+ ausmaskiert, d.h. nicht ver„ndert werden soll. Die Angabe
+
+	1x000000b
+
+ bedeutet also, daá  Bit 7 gesetzt werden soll, Bit 6 belassen	werden soll und
+ die Bits 5..0 gel”scht werden sollen.
+
+ Grunds„tzlich sieht ein Skriptfile folgendermaáen aus:
+
+ ; Header, dient der Erl„uterung
+ INDEXPORT = XXh	; definiert die Nummer des Indexports
+ DATAPORT  = XXh	; definiert die Nummer des Datenports
+
+ INDEX	   = XXh	; welches interne Register soll beschrieben werden
+ DATA	   = XXXXXXXXb	; womit soll das interne Register beschrieben werden
+
+ INDEX	   = XXh
+ DATA	   = XXXXXXXXb
+
+
+ Die einzelnen Schlsselworte der Skriptsprache sind:
+
+ ; Kommentar ...
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Leitet einen Kommentar ein. Der Rest der  Zeile nach dem ";" wird vom Compiler
+ ignoriert und dient nur der Dokumentation des Skriptfiles.
+
+ DATA = XXh|XXXXXXXXb|XX
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Bestimmt  den Wert,  der auf  den Port  "INDEX" ausgegeben  wird. Dieser  kann
+ hexadezimal, dezimal  oder bin„r angegeben  werden und hat  einen Wertebereich
+ von 0 bis 255.  Bei bin„rer Angabe bedeuten eine "1" das  Setzen, eine "0" das
+ L”schen und ein "X" das Beibehalten des entsprechenden Bits.
+
+ DATAPORT = XXh|XXXXXXXXb|XX
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Bestimmt den Wert fr den Daten-Port,	auf den die Datenausgabe erfolgen soll.
+ Der Defaultwert ist 24h. Der erlaubte Wertebereich ist 0 bis 255.
+
+ INDEX = XXh|XXXXXXXXb|XX
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Bestimmt den Index fr die  folgenden Port-Zugriffe. Der erlaubte Wertebereich
+ ist 0 bis 255.
+
+ INDEXPORT = XXh|XXXXXXXXb|XX
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Bestimmt den  Wert fr den Index-Port.  Der Defaultwert ist 22h.  Der erlaubte
+ Wertebereich ist 0 bis 255.
+
+ INLINE = XXh, YYh [, ...]|XXXXXXXXb [, ...]|XX[, ...]
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Erm”glicht das Einbinden eigener Code-Sequenzen via Inlinecode.
+
+ INTERRUPTS = ON|OFF
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Dient dem  Ein- oder Ausschalten  der Interrupts w„hrend  der Initialisierung.
+ Erlaubte Werte sind ON oder OFF.
+
+ MESSAGE  = xxxx
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Definiert einen String xxxx, der beim Abarbeiten des Treibers an der aktuellen
+ Stelle angezeigt  wird. Die mehrfache	Verwendung innerhalb einer  Skriptdatei
+ ist zul„ssig.
+
+ NMI = ON|OFF
+ ÄÄÄÄÄÄÄÄÄÄÄÄ
+ Dient dem Ein- oder Ausschalten des NMI (Nicht Maskierbarer Interrupt) w„hrend
+ der Initialisierungsphase. Erlaubte Werte sind ON oder OFF.
+
+ RAMINIT = XXXXh - YYYYh
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Initialisiert	einen RAM-Bereich  mit dem  Inhalt 0.  Erlaubte Werte  sind fr
+ XXXXh C000h  bis F000h, YYYYh	darf von XXXXh	bis F000h reichen.  Die Angaben
+ mssen hexadezimal erfolgen.
+
+ Die mitgelieferten Skriptdateien k”nnen als Beispiel fr die Gestaltung dienen
+ und sollten den Aufbau gengend illustrieren.
+
+
+ Literatur-Tips:
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+ [1] "PC-Bausteine: NEAT'286-Chipsatz", c't 8/89, S.232
+ [2] "PC-Bausteine: NEAT'386-Chipsatz", c't 11/89, S.360
+ [3] "Von Date bis Gate",		c't 2/93, S.140
+ [4] "Schattenseiten und Bremskl”tze",	c't 3/93, S.140
+ [5] "Chipsatz intern - OPTi",		c't 4/93, S.275
+ [6] "Chipsatz intern - SiS",		c't 7/93, S.221
+
+ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ Die  verwendeten  Bezeichnungen  sind	teilweise  geschtzte  Warennamen ihrer
+ jeweiligen Inhaber.

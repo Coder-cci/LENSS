@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       sleep
+Description: Tool, „hnlich dem Unix-Tool sleep.
+Summary:     Sleep ist dem gleichnamigen UNIX-Tool „hnlich. Sleep kann die Ausfhrung von Batchdateien fr eine bestimmte Zeit pausieren. Sleep gibt an Betriebssysteme, die dies untersttzen, Zeitscheiben ab. Sleep erkennt und bercksichtigt auch den DOS-Switchar.
+Keywords:    Erweiterung, extension, utility, sleep
+End

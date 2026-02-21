@@ -1,0 +1,52 @@
+	TOOLS TO CHANGE PASSWORD OF A NT USER
+	AND TO ACCESS NTFS FILE
+
+GRENIER Christophe
+grenier@cgsecurity.org
+http://www.cgsecurity.org
+
+NTFS Driver - March 30,2001 - GNU General Public License
+Original version by Martin von Lewis and Regis Duchesne for the Linux Kernel
+The original version is avaible at http://www.informatik.hu-berlin.de/~loewis/ntfs/
+DOS version and some small modifications by Christophe GRENIER
+Last version is avaible at http://www.cgsecurity.org
+
+ntcp ntchange ntdir
+ntcp	 : read a file on a NTFS drive
+ntchange : change a file on a NTFS drive
+ntdir    : dir
+It is a part of a NTFS driver.
+
+chntpw - Open source
+Let you change password of a user in a NT SAM file.
+Original version : 011022, (c) Petter N Hagen
+Source avaible at http://home.eunet.no/~pnordahl/ntpasswd/
+DOS version : Christophe GRENIER
+
+samdump
+You can use samdump to extract password informations from a sam file.
+
+
+USAGE
+To change NT password,
+- Autodetection mode
+	1. ntcp ///winnt/system32/config/sam sam
+	2. chntpw -i sam
+	3. ntchange sam ///winnt/system32/config/sam 
+- Manual mode
+	1. ntcp //hda2/winnt/system32/config/sam sam
+	2. chntpw -i sam
+	3. ntchange sam //hda2/winnt/system32/config/sam 
+
+To extract password,
+- Autodetection mode
+	1. ntcp ///winnt/system32/config/sam sam
+	2. samdump sam
+- Manual mode
+	1. ntcp //hda2/winnt/system32/config/sam sam
+	2. samdump sam
+
+Use the manual mode if your NTFS partition is not detected.
+hda2	a=first hard disk (a,b,c,...)
+	2=partition number 2
+

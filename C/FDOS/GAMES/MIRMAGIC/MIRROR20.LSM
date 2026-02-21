@@ -1,0 +1,36 @@
+Begin3
+Title:		Mirror Magic
+Version:	2.0_2
+Entered-date:	07Jun03
+Description:	Arcade style game for Unix, DOS and Windows.
+		A game like "Deflektor" (C 64) or "Mindbender" (Amiga).
+		This is a port of a game I wrote for the Amiga in 1989.
+		Included are many levels known from the games "Deflektor"
+		and "Mindbender".
+		Some features:
+		- stereo sound effects and music
+		- music module support for SDL version (Unix/Win32)
+		- fullscreen support for SDL version (Unix/Win32)
+		- complete source code included under GNU GPL
+		Most important changes since last release version 1.3:
+		- runs now under DOS and Windows
+		- SDL version adds support for music modules and fullscreen
+Keywords:	arcade game x11 deflektor mindbender stereo sound
+Author:		Holger Schemel (info@artsoft.org)
+Maintained-by:	Holger Schemel (info@artsoft.org)
+Primary-site:   www.artsoft.org
+		??????? mirrormagic-2.0.2.tar.gz (Unix)
+		??????? mirrormagic-2.0.2.zip (Windows 95/98/ME/NT/2000)
+		??????? mirror202.zip (DOS / Windows 3.x)
+Alternate-site: artsoft.linuxgames.org
+		??????? mirrormagic-2.0.2.tar.gz (Unix)
+		??????? mirrormagic-2.0.2.zip (Windows 95/98/ME/NT/2000)
+		??????? mirror202.zip (DOS / Windows 3.x)
+Platforms:	Should run on any Unix/X11 system, DOS and Windows.
+		Expected/known to work on Linux, HP-UX, SunOS/Solaris, FreeBSD,
+		NetBSD, AIX, IRIX, DOS, Windows 3.x/95/98/ME/NT/2000 (compiles
+		in Linux DOSEMU and with cross-compilers for MS-DOS and WIN32).
+		SDL version may compile on MacOS and BeOS (never tried).
+		Linux ELF/glibc binary included.
+Copying-policy:	GNU General Public License
+End

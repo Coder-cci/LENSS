@@ -1,0 +1,177 @@
+	ÄÒÄ	 ÄÒÄ   Ò
+	 º	  º    Ð
+	 º	  º
+	 ÇÄÄÄÄÄÄÄ¶   Ä·   ÄÒÄÄÄ·  ÖÄÄÄÄ·   ÄÒÄÄÄÒÄÄÄ·
+	 º	  º    º    º	  ÖÐÄÄÄÄ¶    º	 º   º
+	 º	  º    º    º	  º	º    º	 º   º
+	ÄÐÄ	 ÄÐÄ  ÄÐÄ  ÄÐÄ	  ÓÄÄÄÄÄÐÄ  ÄÐÄ ÄÐÄ ÄÐÄ  V1.9
+
+		Copyright (C) 1992-1993 by JVP
+
+
+
+Private or commercial use is subject to the following conditions:
+- credit always goes to the author.
+- sale of this software is forbidden.
+- usage in commercial products is forbidden.
+
+HiRAM was thoroughly tested for reliability and should function under the
+specified operating conditions without problems.
+All responsabilities however, fall on the user for any damages that may or may
+not have been caused directly or indirectly by HiRAM.
+
+WARNING:
+HiRAM.EXE may NOT be compressed with programs such as DIET, LZEXE or PKLITE,
+because it is both an executable and a DEVICE driver!
+
+Create a bootable DOS diskette before using HIRAM.EXE!
+In any case you should be familiar with the:
+- CONFIG.SYS "?" instruction.
+- F5/F8 keys to skip CONFIG.SYS on bootup.
+
+INTRO:
+
+The range between the segments A000h and F000h is designed for ISA/PCI/AGP
+extension/add-on cards since the release of version 5.0 of DR-DOS and MS-DOS,
+which allows UMA (Upper Memory Area) to be used.
+This way the free conventional DOS memory can be increased up to ~ 620 KB.
+HiRAM supports UMA on PCs with 8086/88 or 80286 processors and memory between
+the segments A000h and E000h (inclusively). On PCs with 386/486 and Shadow RAM
+within the above mentioned area, HiRAM can also be used, even without EMM386
+and its V86 (Virtual) Mode UMBs.
+Device drivers can be loaded high with DEVICEHIGH/INSTALLHIGH in CONFIG.SYS or
+LOADHIGH in AUTOEXEC.BAT.
+
+The table below shows the output of MEM (DR-DOS 6.0) on a AT/286 with 640 KB
+RAM and 64 KB auxiliary RAM in the segment E000h after using HiRAM.EXE:
+
+Memory type	(KBytes)	Available
+----------------------------------------------
+Conventional	655.360 (640K)	643.040 (627K)
+Upper memory	65.488 (63K)	288 (0K)
+
+Since the use of the UMA differs clearly with the DOS versions, HiRAM adjusts
+automatically to the used version. Optional parameters should be used only for
+special configurations or in the case of errors.
+
+HiRAM was successfully tested under MS-DOS 3.21, 3.30, 4.01, 5.0 and 6.0, as
+well as DR-DOS 3.41 and 6.0.
+
+It is assumed HiRAM is installed in the C:\HIRAM directory.
+
+USAGE:
+
+Usage may differ depending on used DOS versions and/or particular hardware
+requirements:
+
+- MS-DOS starting from version 5, 8086/88 or 80286 without Extended MEMORY,
+but with auxiliary memory.
+
+CONFIG.SYS			AUTOEXEC.BAT
+--------------------------------------------------------
+DOS=UMB				C:\HIRAM\HiFILES=12
+DEVICE=C:\HIRAM\HiRAM.EXE	LH KEYB GR,,KEYBOARD.SYS
+FILES=8				...
+DEVICEHIGH=...
+
+- MS-DOS starting from version 5, 80286 with Extended MEMORY, 80386/486 with
+Shadow RAM.
+
+DEVICE drivers and TSR programs load into the UMA, but the OS kernel does not.
+
+CONFIG.SYS			AUTOEXEC.BAT
+--------------------------------------------------------
+DOS=HIGH,UMB			C:\HIRAM\HiFILES=12
+DEVICE=C:\HIRAM\HiRAM.EXE	LH KEYB GR,,KEYBOARD.SYS
+FILES=8				...
+DEVICEHIGH=HIMEM.SYS
+...
+
+DEVICE drivers and TSR programs load into the UMA, but the OS kernel does not.
+
+- DR-DOS starting from version 5, 8086/88 or 80286 without Extended MEMORY,
+but with auxiliary memory.
+
+CONFIG.SYS			AUTOEXEC.BAT
+---------------------------------------------------------
+HIDOS=ON			MEMMAX +U
+SHELL=COMMAND.COM /P /MU	C:\HIRAM\HiFILES=15
+DEVICE=C:\HIRAM\HiRAM.EXE	KEYB GR,,KEYBOARD.SYS /MU
+FILES=5				HILOAD ...
+HIBUFFERS=...
+HIDEVICE=...
+
+DEVICE drivers, TSR programs and the OS kernel load into the UMA.
+
+- DR-DOS starting from version 5, 80286 with Extended MEMORY, 80386/486 with
+Shadow RAM.
+
+CONFIG.SYS			AUTOEXEC.BAT
+---------------------------------------------------------
+HIDOS=ON			MEMMAX +U
+SHELL=COMMAND.COM /P /MH	C:\HIRAM\HiFILES=15
+DEVICE=HIDOS.SYS /BDOS=FFFF	KEYB GR,,KEYBOARD.SYS /MH
+DEVICE=C:\HIRAM\HiRAM.EXE	HILOAD ...
+FILES=5
+HIBUFFERS=...
+HIDEVICE=...
+
+DEVICE drivers and TSR programs load into the UMA, but the OS kernel is
+shifted into the HMA.
+
+HiRAM tests the upper memory in 4 KB steps for the presence of upper RAM and
+initializes it if necessary.
+
+HiRAM does not occupy additional memory after successful initialization if
+using DR-DOS 3.41 and MS-DOS. If using DR-DOS 5.0 or 6.0 only 48 Bytes load in
+the UMA.
+
+Optional Parameters:
+
+In special cases HiRAM behavior can be controlled by specific command line
+parameters.
+Syntax:
+
+DEVICE=[Lw:][\Pfad\]HiRAM.EXE [/option [/option [...]]]
+
+Debug tests the upper memory and outputs the determined allocation at the
+display, however initialization and installation are prevented.
+
+	/Exclude=area
+	/X=area
+	/E=area
+DEVICE=HiRAM.EXE /X=-D100, e800-e9ff, eb00, ed00
+exclude the range from A000h-D1FFh, E800h-E9FFh, EB00h-EBFFh and ED00h-EFFFh.
+
+	/FixMSDOS
+initialize the memory expansion according to type of MS-DOS 5.0/6.0.
+
+	/FixDRDOS
+initialize the memory expansion according to type of DR-DOS 5.0/6.0.
+
+	/Chain
+causes the connection of conventional memory and UMBs.
+
+	/NoChain
+prevents the connection of conventional memory and UMBs.
+
+	/Int2F
+causes the installation of INTERRUPT Handlers, which broadcast the available
+upper memory to the operating system. The Handler for MS-DOS 5.0/6.0 is only
+temporary, i.e., it reports according to the request of upper memory
+independently from the memory. Therefore this option should be used with
+extreme caution, in order to avoid system crashes.
+
+	/NoInt2F
+prevents the standard installation messages of INTERRUPT Handlers.
+
+Internal defaults used for:
+
+- MS-DOS 5:
+	/FixMSDOS /NoChain /Int2F
+
+- MS-DOS 4 + DR-DOS 3.41:
+	/FixMSDOS /Chain /NoInt2F
+
+- DR-DOS 5:
+	/FixDRDOS /Chain /Int2F

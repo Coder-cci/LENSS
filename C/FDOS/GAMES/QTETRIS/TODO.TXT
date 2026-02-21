@@ -1,0 +1,6 @@
+- Fix an error in the records (ask to the sister of Marco Chiesi).
+- To eliminate the global variable `BITMAP *virtual'.
+- To improve the control of objects of the game (to try to eliminate
+  GAMEOBJ and `handle.c' making all more direct one).
+- To eliminate most of global variables that are been able to.
+

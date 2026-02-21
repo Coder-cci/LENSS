@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       LPQ1
+Description: lpq1 est un compresseur de fichiers et un cr‚ateur d'archives
+Keywords:    compresseur, lpq1
+End

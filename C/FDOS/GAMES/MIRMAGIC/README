@@ -1,0 +1,205 @@
+Welcome to
+
+   M I R R O R M A G I C   I I
+   ---------------------------
+
+A game for Unix/X11, DOS and Windows by Holger Schemel.
+(c) 1994-2000 by Holger Schemel.
+
+Introduction
+============
+This is a nice little game with color graphics and sound for your
+Unix system with color X11, DOS or Windows. You need an 8-bit color
+display or better.
+It will not work on black&white systems, and maybe not on gray scale
+systems.
+
+It was first released as "Mindbender" in the year 1989 on the Amiga
+(with ports on other computer systems) and is in fact a clone of the
+C64 game "Deflektor". As the Amiga is a bit outdated now, I decided
+to port it to Unix systems and later to DOS and Windows.
+
+
+Getting started
+===============
+Just 'cd' to the 'mirrormagic' directory and type 'mirrormagic'!
+This works only on Linux boxes, because the included binary was
+compiled for Linux systems. If you have another Unix system like
+HPUX, NetBSD or SUN, you first have to type 'make' to compile it.
+This may be needed on Linux systems, too, if you have an older
+system (kernel, libraries, ...).
+
+
+The Menues
+==========
+You can see eight blue circles on the left side of the eight green menu
+texts; these are buttons to activate the menu commands by simply clicking
+on them with the left mouse button. The button will then change to red.
+
+The menu 'name'
+---------------
+First, you have to choose a player name. Just click on the button for the
+'name' menu. The screen will change and offer 10 player names to choose
+from. At the first time, they will all be 'no name'. Choose the last
+entry 'enter new name', choose one of the 'no name' fields and type in
+your name. It will then appear as the actual player's name on the main
+screen.
+
+If you choose a certain special name, you will be in a cheat mode where
+you can choose all levels without playing the lower levels before... :)
+
+The menu 'level'
+-----------------
+If you have played some levels of this game, you can choose the already
+played levels at any time, but you cannot choose the higher levels. This
+means, you can choose levels from level 0 to the highest level that you
+have ever won. This is known as your 'handicap'.
+
+To choose a level, click on the two buttons on the left or right hand of
+the level field. If you click on the button left of the text 'level',
+the level field will switch to '50' or, if >=50, back to '00'. This is
+because the levels '50' to '99' are empty, but you can build your own
+mirrormagic levels with the built-in level editor.
+
+Hall of fame
+------------
+Click on this button to see a list of the best players of this level.
+Click again to go back to the main menu.
+
+Level creator
+-------------
+This brings you to the level editor, if you have switched to level 50
+or higher, which are empty and can be filled by yourself. See below.
+
+Info screen
+-----------
+This screen shows you all elements which appear in the 50 levels.
+Click again to go back to the main menu.
+
+Start game
+----------
+This will start the game.
+
+Setup
+-----
+To change some things in the game, use the setup menu.
+You can enable/disable "Sound" (enables/disables _all_ sounds in
+the game), "Sound loops" (only allowed on Linux systems with
+VoxWare[tm] sound driver; don't worry if you never heard of it --
+it's the name of the standard Linux sound driver), "Game music"
+(can always be enabled on very fast systems [exception: you don't
+like it], on slower systems it will take some percent of CPU time
+which will slow things down a bit) and "Toons", which will forbid/
+permit the little animated toons.
+
+"Exit" quits the setup menu without saving the changes, "Save and exit"
+will save and then return to the main menu.
+
+Quit
+----
+Exit the game.
+
+
+How To Play The Game
+====================
+When the game has started, you can see the playfield on the left side
+and a control field on the right side. The control field contains the
+following elements:
+
+Level indicator		Tells you what level you are playing.
+
+Spell counter		Shows you how many 'spells' you still need
+			to win the current level.
+
+Score counter		Shows the current score. In some levels there
+			are some extra items giving extra score points.
+
+Music On/Off		The two buttons (red and green) left and right
+			of the 'stop' button can be used to disable /
+			enable background music. On slower systems (and a
+			486DX33 with Soundblaster _is_ a slower system)
+			it increases the game speed to turn off back-
+			ground music. You can completely turn off all
+			sound effects in the setup menu, although it is
+			much more fun to have them enabled when it
+			doesn't eats up to much speed.
+
+			(Note: On a stock Amiga 500 (with MC68000, 7 MHz)
+			from the year 1987, on which this game originally
+			was developed, the graphics, the sound and the
+			overall gameplay was _much_ more smooth than on
+			a 486DX/33 with accelerated Cirrus 5426 graphics and
+			a Soundblaster Pro. The Amiga version had some
+			additionally background music and, yes, it all ran
+			in multitasking with AmigaOS. But you may have a
+			Pentium100 anyway. Just a note.)
+
+			(Another note: The sound server currently needs
+			about 10% CPU time on my 486DX/33/SBPro system
+			when playing background music. I wonder if this
+			would get better with a better soundcard, like
+			Gravis Ultrasound, or if only pure CPU power
+			helps in this case...)
+
+Stop button		Click here to stop the current game. You are
+			asked if you really want to quit, so you can
+			use this button as a pause button, too.
+
+Fuel (blue)		Shows you how many time is left to finish the
+			current level ('magic energy').
+
+Heat (red)		Shows you if the magic beam is overheated. If
+			this reaches the top, the game is over.
+
+On the left side you can see the playfield itself. Your task is to get
+all the 'magic kettles' which contain 'magic spell ingredients'. To get
+them, you have to hit them with the 'magic beam' that starts from the
+magician. The gnomes (with red hats) each have a rotatable mirror which
+can be rotated by clicking with the left or right mouse button, so you
+can reflect the 'magic beam' to another direction. If you have gotten
+all the 'magic kettles' (the ones with the color cycling, if you play
+at an X server with read/write colors), the 'magic door' opens and you
+only have to direct the 'magic beam' to this door to end the game. If
+you have some time left you will get a time bonus and see your placement
+in the hall of fame.
+
+To complicate the game, the following levels will contain more and more
+of some strange elements to help you in the level or to make it harder.
+
+You can see them all on the 'info screen' from the main menu. Just try
+out what they do when you see them in a new level - you will quickly
+find it out... :)
+
+The Level Editor
+================
+To build your own levels, just choose a level number between 50 and 99
+and then choose 'level creator' from the main menu. You then will see
+all available elements on the right side. Just choose the element you
+want to place from the right and place it on the left side. All three
+mouse buttons are mapped to draw in the playfield, the middle or the
+right one erases the filed under the mouse button - I have forgotten
+which one, just try it out! ;)
+
+'clear' clears the level, 'exit' saves it after a confirmation.
+
+
+
+And Now Have Fun!
+=================
+Have fun playing the game, building new levels and breaking all high
+scores! ;)
+
+If you have any comments, problems, suggestions, donations, flames,
+send them to
+
+	info@artsoft.org
+
+or Snail Mail
+
+	Holger Schemel
+	Detmolder Strasse 189
+	33604 Bielefeld
+	GERMANY
+
+Have fun,
+		Holger

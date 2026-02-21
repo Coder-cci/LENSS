@@ -1,0 +1,66 @@
+
+         HANGMAN V1.05 COPYRIGHT (C) MATEUSZ VISTE "FOX" 2005-2007
+
+
+ This program  is free software;  you can  redistribute it  and/or modify it
+ under the terms of the  GNU General Public License as published by the Free
+ Software Foundation;  either version 2 of the License,  or (at your option)
+ any later version.
+
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY  WARRANTY;  without even  the implied  warranty of  MERCHANTABILITY  or
+ FITNESS FOR A PARTICULAR  PURPOSE.  See the GNU  General Public License for
+ more details.
+
+ You should  have received  a copy of  the GNU General Public  License along
+ with this program;  if not,  write to the  Free Software Foundation,  Inc.,
+ 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+
+ Vocabulary files bundled with Hangman:
+
+  English:
+   Animals                      [EN_ANIML.VOC]     ...47 words
+   Colors                       [EN_COLRS.VOC]     ...27 words
+   Computers & Internet         [EN_COMPS.VOC]     ...70 words
+   Lord of the Rings            [EN_LOTR.VOC]      ...102 words
+   Nintendo (NES) games         [EN_NES.VOC]       ...250 words
+   Norse Mythology              [EN_NORSE.VOC]     ...36 words
+   States                       [EN_STATS.VOC]     ...50 words
+   US Cities                    [EN_CITIE.VOC]     ...45 words
+   Various words                [EN_BASE.VOC]      ...400 words
+  Polish:
+   Polskie imiona               [PL_IMION.VOC]     ...132 words
+   Rozne slowka                 [PL_BASE.VOC]      ...400 words
+  French:
+   Mots divers                  [FR_BASE.VOC]      ...400 words
+   Pays et continents           [FR_PAYS.VOC]      ...118 words
+  German:
+   Various words                [DE_BASE.VOC]      ...400 words
+  Dutch:
+   Basic dutch vocabulary       [NL_BASE.VOC]      ...150 words
+  Hungarian:
+   Basic vocabulary             [HU_BASE.VOC]      ...100 words
+
+
+ Contributors:
+
+   Willy-Billy (http://www.bootablecd.de) - Provided the DE_BASE.VOC
+    vocabulary file (400 words).
+
+   MegaBrutal (http://megabrutal.ondaem.net) - Wrote Hungarian localisation.
+
+   Eric Auer (http://www.coli.uni-saarland.de/~eric) - Wrote German and Dutch
+    localisations.
+
+
+
+                                                          Enjoy!
+                                                          Mateusz Viste "Fox"
+
+
+                        http://mateusz.viste.free.fr/dos
+                             mateusz.viste@mail.ru
+
+ ----------------------------------------------------------------------------
+ <EOF>

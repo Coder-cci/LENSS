@@ -1,0 +1,271 @@
+-------------------------------------------------------------------------------
+ Logger Device Driver Developer Application Programming Interface, Version 1.0
+-------------------------------------------------------------------------------
+
+Driver detection
+
+Driver detection is performed using AMIS interrupt 0x2D by performing an
+installation check for each multiplex number and comparing the signature
+of any installed software using that interrupt.
+
+The signature consists of two consecutive 8 character identifiers.
+
+Manifacturer:	'J.SHIDEL'
+Product Name:	'LOGGERxx'
+
+Performing the INT 0x2D call:
+
+	AL = 0x00		; Install Check Function
+	AH = multiplex number	; 0 through 255, you need to check each until
+				; the driver is found.
+
+On return from INT 0x2D:
+
+	AL = 0x00		; Multiplexer is not in use, continue looking
+	AL = 0xFF		; Multiplexer is in use, check the signature
+		CH = Major Version of API
+		CL = Minor Version of API
+		DX:DI -> Signature string of program using this multiplex
+
+Compare the string pointed to by DX:DI with 'J.SHIDELLOGGERxx'. If the two
+signatures match, the driver is located on that multiplex number.
+
+-------------------------------------------------------------------------------
+
+Communicating with the driver
+
+Once the multiplex number for the driver is known, communication with its
+specific functions can be performed through the AMIS multiplex. However,
+there can be a number of other programs that are hooked into that interrupt.
+
+For the best performance, it is recommended that you use AMIS again to retrieve
+the private entry point for the driver and then talk to it directly. The
+function numbers, registers and return values are the same using either method
+of communication. Just note, the functions under 0x10 are AMIS specific and
+are not supported when making direct calls to the driver.
+
+To retrieve the private entry point to the driver, perform an INT 0x2D call:
+
+	AH = multiplex number 	; Found through the install check
+	AL = 0x01 		; Get Private Entry Point Function
+
+On return from INT 0x2D:
+
+	AL = 0xFF		; All versions of Logger support AMIS fn 0x01
+	DX:BX -> Entry point	; Far call address to for direct communication
+
+For the best performance, further communication with the driver should be
+performed through a FAR CALL to the address returned in DX:BX.
+
+-------------------------------------------------------------------------------
+
+Other AMIS functions are supported by the driver. However, those are not
+specific to LOGGER and are general AMIS support features. For more information
+on AMIS see https://fd.lod.bz/rbil/interrup/tsr/2d.html
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x10 - Check Status
+
+	AL = 0x10		; Check Status Function
+
+Returns:
+
+	CX = driver status flags
+	DX:DI -> size information record
+
+Driver Status Flags:
+
+	bit 0 			; logging enabled
+	bit 1 			; reserved/internal use only
+	bit 2 			; reserved/internal use only
+	bit 3 			; advanced capture mode is active
+	bit 4 			; hardware supports advanced capture mode
+	bit 5 			; logging includes color attributes
+	bit 6 			; reserved
+	bit 7 			; at capacity and is stopped or discarding text
+	bit 8/9 = 00b		; Log in LOW memory
+	bit 8/9 = 01b		; Log in EMS memory
+	bit 8/9 = 10b		; Log in UMB memory
+	bit 8/9 = 11b		; Log in XMS memory
+	bit 10-15		; reserved/unused
+
+Size Information Record:
+
+	+0 WORD			; 16-bit Size of log buffer in Kilobytes
+	+2 DWORD		; 32-bit Size of log buffer in bytes
+	+6 DWORD		; 32-bit Number of bytes written to log
+
+To ensure the data in the Size Information is current, a call to the Flush
+Buffers function should be performed prior to requesting the status. However,
+if only the driver status flags are being tested, a Flush Buffers call is not
+required.
+
+Note: the Number of bytes written to the log is only accurate until that value
+wraps. At which point the count is set to 1 and continues incrementing. That
+would take a while to occur. However, if a system is running long enough it
+WILL happen.
+
+Therefore, to determine how much data is in the LOG requires a couple steps.
+First, check the DWORD value for the number of bytes written. If this is zero,
+the LOG is completely empty. Next, check bit 6 of the status. If it is set,
+the log is at maximum capacity "FULL" and the DWORD value cannot be trusted.
+If bit 6 is not set, the DWORD value is accurate.
+
+Alternatively, to test only if the Log is empty or not, Function 0x16 (Read
+Character) using mode 0x03 (Get First) or 0x04 (Get Last) can be used.
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x11 - Set Enabled
+
+	AL = 0x11		; Set Enabled function
+	BL = state
+		BL = 0x00	; Disable logging
+		BL = 0x01	; Enable logging
+
+Returns:
+
+	BX = previous state 0x0000 or 0x0001
+
+Turns off or on active logging. If there is console text to be displayed which
+should be excluded from the log, logging can be disabled with this function.
+When finished displaying the excluded text or at program exit, use this function
+to return logger to its previous enabled/disabled state.
+
+Regardless of current or new state, this function always automatically calls
+the Flush Buffers function.
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x12 - Flush Buffers
+
+	AL = 0x12		; Flush Buffers Function
+
+Returns:
+
+	nothing
+
+Ensures the log is up to date and insures that any pending data has been
+handled by the driver. This function must be called before appending or
+reading the log using the API!
+
+Flush buffers can be called at anytime wether or not it is needed. It can
+be called even when logging is disabled or the buffers are empty.
+
+Note: The SetEnabled function 0x11 always calls the Flush Buffers function.
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x13 - Clear Log
+
+	AL - 0x13		; Clear Log Function
+
+Returns:
+
+	nothing
+
+This function discards all logged messages. It also resets the Number of bytes
+written to zero and clears the LogFull status flag (bit 7). This function
+always disables logging. If desired, logging can be enabled again after this
+call has completed.
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x14 - Write Character
+
+	AL = 0x14		; Write Character Function
+	BH = color attribute
+	BL = character
+
+Returns:
+
+	nothing
+
+Before calling this function, you must ensure the driver buffers have been
+flushed by either calling fn 0x11 (Set Enabled) or 0x12 (Flush Buffers).
+
+Appends a character to the log. Always set the color attribute for this call.
+When Color logging is enabled (status bit 5), the color attribute will be
+stored in the log along with the character. If Color logging is not enabled,
+the value in BH will simply be ignored. In DOS, the default text color
+attribute is usually 0x07 for gray text on black background.
+
+The Logger uses multiple methods for recording and has buffered data. Prior to
+writing a sequence of characters to the log, a single call to the Flush Buffers
+function must be made. If that is call is not made, there is a very high
+probability the text recorded in the log will be out of order.
+
+Logging does not need to be enabled to append text. Regardless of the active
+logging state, this function can be used to append text to the log.
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x15 - Write ASCIIZ
+
+	AL = 0x15		; Write ASCIIZ Function
+	BH = color attribute
+	ES:DI -> ASCIIZ String
+
+Returns:
+
+	nothing
+
+This is a convenience function to write an entire ASCIIZ string to the Log
+using a single driver call. It has the same behaviour and requirements as the
+Write Character function. If writing an entire string of the same color to the
+log, this function will provide some improved performance.
+
+-------------------------------------------------------------------------------
+
+FUNCTION 0x16 - Read Character
+
+	AL = 0x16		; Read Character
+	BL = mode
+        	0x00	; Read character at DX:CX
+		0x01	; Read character at DX:CX, Adjust DX:CX for next
+		0x02	; Read character at DX:CX, Adjust DX:CX for previous
+		0x03	; Set DX:CX to first character
+		0x04	; Set DX:CX to last character
+		0x05	; Set DX:CX to first whole line
+
+Returns:
+
+	Modes 0x00, 0x01, 0x02
+		BL = Character
+		BH = Attribute
+		DX = 0xffff, No next or previous character, CX=undefined
+		DX:CX = Next or previous character position
+
+	Modes 0x03, 0x04, 0x05
+		DX = 0xffff, log is empty, CX=undefined
+		DX:CX = position requested
+
+Before calling this function, you must ensure the driver buffers have been
+flushed by either calling fn 0x11 (Set Enabled) or 0x12 (Flush Buffers).
+
+It is highly recommended that you disable logging prior to displaying the
+contents of the log to the screen. Without disabling logging, it is very likely
+any text you display from the log will be re-recorded into the log. Otherwise,
+the log could be continuously appended by the text that is being displayed and
+the end of log will never be reached.
+
+The first call to this function needs to start with Mode 0x03, 0x04 or 0x05. If
+on return DX equals 0xffff, then the log is empty. Otherwise, DX:CX will be the
+position of the character requested.
+
+DO NOT increment or decrement the log character position (DX:CX) manually!
+
+Use modes 0x01 and 0x02 to move forward or backwards within the log. The log
+uses a cyclic buffer and the start or end of the log can be any at position in
+the buffer. The log can also be using bytes or words to store individual
+characters. Future versions may also include additional data in the log.
+
+The mode 0x03 and 0x05 can differ in the character position returned in DX:CX.
+When the Log has reached capacity and old messages are being overwritten,
+partial lines will exist at the beginning of the log. In general, such lines
+are of little use. Therefore, mode 0x05 is preferred for retrieving the
+starting point of log text.
+
+-------------------------------------------------------------------------------
+LOG-API v1.0, 2023-05-19

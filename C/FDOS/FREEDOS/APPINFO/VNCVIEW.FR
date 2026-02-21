@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       VNC Viewer 8086
+Description: Visionneur VNC pour 8086+, bas‚ sur Xvncviewer
+Keywords:    VNC, 8086
+End

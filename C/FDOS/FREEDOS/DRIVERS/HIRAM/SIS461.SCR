@@ -1,0 +1,42 @@
+; ษอออออออออออออออออออออออออออออออออออออออออออออออป
+; บ  Script-File fr MakHiSET			  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ  Chipsatz: SIS 85C461 Single Chip		  บ
+; บ  nicht getestet				  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ  Blendet im Bereich C800h:0 - EFFFh:0 RAM ein บ
+; บ  und initialisiert dieses mit 00h.		  บ
+; บ  (Einstellung fr VGA-Karte bei C000h-C7FFh)  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ		(C) 1993 by JVP			  บ
+; ศอออออออออออออออออออออออออออออออออออออออออออออออผ
+
+; Fr Startmeldung des Treibers
+MESSAGE		=	SIS 85C461 (Single Chip), UMBs C800h-EFFFh
+
+; NMI abschalten bis alles fertig ist
+NMI		=	OFF
+
+; Werte fr Index- und Datenport
+INDEXPORT	=	22h		; entspricht default
+DATAPORT	=	23h
+
+; Segments C800h - EFFFh Shadow RAM enable
+INDEX		=	52h
+DATA		=	10111110b
+;			ณณณณณณณภC000h	\
+;			ณณณณณณภC800h	 \
+;			ณณณณณภD000h	  \ 0=disable
+;			ณณณณภD800h	  / 1=enable
+;			ณณณภE000h	 /
+;			ณณภE800h	/
+;			ณภ0=write protect disable
+;			ภ1=RAM read enable
+
+; Segmente C800h - EFFFh einschlieแlich mit 00h initialisieren
+RAMINIT		=	C800h - EFFFh
+
+; fertig, NMI wieder zulassen
+NMI		=	ON
+
+; Quelle: c't 7/93 S.224

@@ -1,0 +1,11 @@
+CPI (Code Page Information) Package
+
+Package of DISPLAY-type, UPX-compressed CPI files with various DOS codepages.
+
+The CPX files can be uncompressed using NASM. 
+
+The uncompressed files can be then modified using free utilities created by
+Kosta Kostis available on at http://www.kostis.net/freeware/index-en.htm
+
+Additional information regarding what CPI fonts are provided in this package are
+located in the DOCS\CPIDOS\CODEPAGE.TXT.

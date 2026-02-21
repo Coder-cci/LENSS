@@ -1,0 +1,42 @@
+Bolitaire 0.62a 12th Mar 2005
+------------------------------
+
+This is the todo list and when any of the list is completed it 
+will be a update release for Bolitaire.
+
+Todo list
+---------
+
+@ to add undo function. (rare chance to add it).
+
+@ Adding keyboard support to dialogs.Currently Esc key to quit
+  dialog is added (rare chance to add it).
+
+@ to have seperate stats for every user (requested by Gideon Weems)
+
+@ Current speed controll is through frame skip, need to add delay
+
+@ to port to Qnx[may be impossible] and Mac OS X[certainly possible]
+
+@ create better icon
+
+@ mouse theme
+
+@ recode/optimize most part of the program
+
+@ save/load playlist
+
+@ to fix song seek
+
+completed todo
+``````````````
+@ double buffering mouse(fair chance of doing it)
+
+@ double buffering the menus(rare chance of doing it)
+
+@ add background
+
+@ Add easter egg :-)
+
+@ to add mp3 player under DOS(if you like this idea, please tell me about it)
+

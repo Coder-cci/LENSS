@@ -1,0 +1,48 @@
++Bolitaire is not protected from any copyrights
++Use it at your own risk
+
+
+Bolitaire 0.62a Release Mar 12 2005
+* added mp3 player
+* background selection
+* perfect game play achieved
+* added easter egg
+* recoded some part of the program
+* switched to allegro 4.1.18
+* added program icon
+* can't remeber what else I have changed/added ;-)
+
+Bolitaire 0.58b Release Dec 10 2004
+* minor changes
+* changed the king(appears when you finish game) to be as M$ freecell one.
+
+Bolitaire 0.57b Release Nov 27 2004
+* Special edition which introduces Bolitaire in BeOS
+
+Bolitaire 0.55b Release Nov 25 2004
+* switched to allegro 4.1.16(Previously used allegro 4.0.3)
+* No more acquiring from video memory
+
+Bolitaire 0.5b Release Nov 15 2004
+* Added animation
+* Now the title/status bar can be removed in windowed mode
+* some bug fixes
+
+Bolitaire 0.4b Release Nov 11 2004
+* in linux, now program can run by clicking it in konquerer
+* polished game play
+
+Bolitaire 0.3b Release Nov 9 2004
+* lot of bug fixes, refer bug report
+* Added full screen mode in options
+* Now Escape key closes the dialog
+
+Bolitaire 0.2b Release Nov 1 2004
+* Added all the menus and dialogs (contain one bug)
+* Added statistics
+* game play routine, still contain bugs
+* dirty mouse bug exists 
+
+Bolitaire 0.1b Release Jun 2004 
+* Basic game play routines (contain some bugs)
+* Basic graphics

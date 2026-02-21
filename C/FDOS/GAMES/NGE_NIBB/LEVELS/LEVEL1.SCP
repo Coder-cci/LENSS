@@ -1,0 +1,105 @@
+Level.Title Level_1_-The_Beginning-
+Level.BlockNum 7
+Level.FoodNum 6
+Worm.Start 180 40 15
+
+Block 0
+
+  Width 95
+  Height 15
+  X 99
+  Y 97
+
+Block 1
+
+  Width 15
+  Height 95
+  X 262
+  Y 60
+
+Block 2
+
+  Width 8
+  Height 200
+  X 0
+  Y 0
+
+Block 3
+
+  Width 320
+  Height 8
+  X 0
+  Y 0
+
+Block 4
+
+  Width 8
+  Height 200
+  X 312
+  Y 0
+
+Block 5
+
+  Width 320
+  Height 8
+  X 0
+  Y 192
+
+Block 6
+
+  Width 91
+  Height 12
+  X 191
+  Y 179
+
+Food 0
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 20
+  Y 20
+
+Food 1
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 20
+  Y 150
+
+Food 2
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 160
+  Y 150
+
+Food 3
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 290
+  Y 90
+
+Food 4
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 260
+  Y 160
+
+Food 5
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 123
+  Y 70
+
+
+
+

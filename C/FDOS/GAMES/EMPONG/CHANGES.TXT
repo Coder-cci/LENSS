@@ -1,0 +1,19 @@
+Emeritus Pong's changes history.
+
+
+What's new in v0.92 [09 Feb 2013]:
+ - Sound support for Windows and Linux is provided by the SDL library now (was: FBsound lib),
+ - On DOS, the availability of the RDTSC instruction is checked before running the game (avoids crashing on pre-1993 machines),
+ - Slightly improved AI of the CPU player.
+
+What's new in v0.91 [08 Jul 2008]:
+ - Heavy changes in timing (DOS port only), rely on RDTSC now - requires Pentium,
+ - PC speaker calls doesn't eat CPU anymore (DOS),
+ - Clicking on the "x" button of the window (Linux/Windows) closes the game (was going to main menu instead),
+ - When in "solo" mode, the ball comes always from the left side,
+ - The "solo" mode displays the speed level instead of the score,
+ - Fixed a sound bug (Windows/Linux): one of the files wasn't loading correctly,
+ - Many small optimizations.
+
+What's new in v0.90 [04 Jul 2008]:
+ - First public release.

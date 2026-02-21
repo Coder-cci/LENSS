@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       LPT Driver
+Description: Steuert an LPT angeschlossene Ger„te.
+Summary:     Ein Tool um Hardware am LPT manuell oder nach einem Zeitplan steuern zu k”nnen.
+Keywords:    LPT
+End

@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       ETHERDFS
+Description: SystŠme de fichiers DOS Ethernet
+Summary:     EtherDFS est un TSR ® systŠme de fichiers installable ¯ pour DOS. Il mappe un lecteur d'un ordinateur distant (g‚n‚ralement bas‚ sur GNU/Linux) … une lettre de lecteur local, en utilisant des trames Ethernet brutes pour communiquer.
+Keywords:    etherdfs
+End

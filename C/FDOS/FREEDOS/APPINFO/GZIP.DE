@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       GZIP
+Description: Zip Packer, Archivierungstool wie PKZIP.
+Summary:     Komprimiert einzelne Dateien, um beispielsweise eine tar-Datei in eine tgz-Datei zu komprimieren. (Versionen 8086 und 386).
+Keywords:    gzip, zip, unzip, archiver, packer
+End

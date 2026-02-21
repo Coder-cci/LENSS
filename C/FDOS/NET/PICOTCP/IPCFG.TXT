@@ -1,0 +1,78 @@
+
+       ipcfg - the configuration tool for the picotcp4dos TCP/IP stack
+                     Copyright (C) 2015 Mateusz Viste
+
+                    http://picotcp4dos.sourceforge.net
+
+
+ipcfg allows to configure the picotcp4dos TCP/IP stack. as any application
+relying on the picotcp4dos stack, it requires the PICOTCP environment variable
+to point to the file that have to be used for storing the networking
+configuration, for example:
+
+SET PICOTCP=C:\PICOTCP.CFG
+
+ipcfg embeds a DHCP client for autoconfiguration. This way, applications do
+not have to contain bloated DHCP-related code. In case you use DHCP for your
+network configuration, take care to run 'ipcfg dhcp' as often as possible
+(during every boot at least).
+
+
+====== Syntax ================================================================
+
+ipcfg int
+ipcfg int xx
+ipcfg ip
+ipcfg ip add xxxxx/xx
+ipcfg ip del xxxxx/xx
+ipcfg dhcp
+ipcfg dns add xxxx
+ipcfg dns del xxxx
+ipcfg route
+ipcfg route add xxxx/xx xxxx
+ipcfg route del xxxx/xx
+
+
+====== Configuration file format =============================================
+
+picotcp4dos uses a binary file to store all its settings. All settings can be
+modified via the ipcfg configuration tool. all numerical values are always
+written in network byte order. each time an IP address is present, it is
+written in the form of a 16-bytes binary string (either ipv6, or ipv6-mapped
+ipv4).
+
+0000 sig 'pTCP'    [4 bytes]
+0004 routes offset [2 bytes]
+0006 dnssrv offset [2 bytes]
+0008 number of ifs [1 byte]  // for now, only 1 interface is supported
+0009 pktdrv int    [2 bytes] \
+000B ipaddr offset [2 bytes] _> repeated ifs times
+
+routes list:
++000 rtcount       [1 byte]
++001 prefix        [16 bytes] -\
++005 prefixlen     [1 byte]     > repeated rtcount times
++006 gateway       [16 bytes] -/
+
+dnssrv list:
++000 ipcount       [1 byte]
++001 ip address    [16 bytes] -> repeated ipcount times
+
+ipaddr list:
++000 ipcount       [1 byte]
++001 ip address    [16 bytes] \
++002 ip masklen    [1 byte]   _> repeated ipcount times
+
+
+====== License ===============================================================
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+[EOF]

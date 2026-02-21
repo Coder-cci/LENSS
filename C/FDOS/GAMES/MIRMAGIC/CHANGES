@@ -1,0 +1,54 @@
+Release Version 2.0.2 [07 JUN 2003]
+-----------------------------------
+	- fixed bug that can cause crash on some compilers or systems
+	- fixed bug in game engine making some levels sometimes unsolvable
+
+Release Version 2.0.1 [19 MAR 2002]
+-----------------------------------
+	- icon for Windows executable added
+	- bug when selecting default level series fixed
+	- new IFF style file format for level files
+	- fullscreen mode now works with Windows (workaround for bug in SDL)
+	- /dev/dsp support for NetBSD added (thanks to Krister Walfridsson)
+	- file permissions when saving files and creating directories changed
+	- some small sound bugs fixed
+
+Release Version 2.0.0 [01 JAN 2001]
+-----------------------------------
+	- complete code redesign (based on new Rocks'n'Diamonds game engine)
+	- contains now 60 levels from the classic game "Deflektor"
+	- can be compiled with SDL library to build native Windows version
+	- can be compiled with Allegro library to build native DOS version
+	- DOS and Windows versions can be compiled with gcc cross-compiler
+	- changed levels 43 and 45 due to changed (faster) pac man behaviour
+	- sound sample frequency raised from 8 kHz to 22 kHz
+
+Release Version 1.3 [14 SEP 1995]
+---------------------------------
+	- some changes that I have forgotten :-)
+
+Version 1.2 [???] [NOT RELEASED]
+--------------------------------
+	- much better name handling -> modified format of RAY.names
+	- setup menu lets you change some things like sound settings
+	- file handling was broken in 1.0, 1.1 -> fixed
+
+Release Version 1.1 [25 JUL 1995]
+---------------------------------
+	- some changes for HP-UX
+	- some bugs fixed, some new bugs added
+	- behaviour of the 'door field' is more friendly now,
+	  so level 32 is solvable now
+	- bad bug fixed that crashed game especially when in level 25
+	- better icon :)
+	- the problem with pacmen not moving *should* be fixed now
+	- added level 48 (which was blank before)
+	- maybe a better game handling (mirrors not moving several times)
+	- very much better sound server which takes advantage of some
+	  features of VoxWare(tm), the Linux Sound System
+	- most buttons can be simulated by the keyboard
+	- part one of a major code cleanup (to add some bugs ;)
+
+Release Version 1.0 [03 MAY 1995]
+---------------------------------
+	- first release version (Unix)

@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       GNU Chess
+Description: GNU Chess est un programme d'‚checs public
+Summary:     GNU Chess est un programme d'‚checs public. N‚cessite NANSI.SYS pour s'afficher correctement.
+Keywords:    ‚checs,gnuchess
+End

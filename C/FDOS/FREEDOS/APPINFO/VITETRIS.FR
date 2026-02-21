@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       Vitetris
+Description: Un clone de Tetris en mode texte
+Summary:     Un clone de Tetris en mode texte.
+End

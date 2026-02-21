@@ -1,0 +1,175 @@
+
+                *********** WARNING ************
+
+        This is only a test version of the newsreader, we
+        will formally announce it when a working version
+        is complete - probably within a week or two.  You
+        are free to test it, but do not rely on it yet.
+
+                ********************************
+
+Snuz was a news reader written by Doug MacDonald and had some history with
+earlier news readers included in the PCIP distribution.  The new Snuz here
+is different from versions you may have seen elsewhere.
+
+1. The new Snuz uses the WATTCP TCP/IP code meaning:
+        - you do not need to install NETDEV.SYS drivers into your CONFIG.SYS
+        - it supports more modern routing and stuff
+        - it works with packet drivers such as those available
+          from sun.soe.clarkson.edu or vax.ftp.com
+        - it offers acceptable performance
+
+2. Snuz often exhibits absolutely excruciating sluggishness when posting.
+   This is a truth of the NNTP server, not of Snuz - you will usually see
+   it wait for the acceptance from the server.
+
+3. You can now shell out of Snuz and it won't crash.  WATTCP can easily
+   be placed in the background, meaning shelling out to an editor or
+   even to the DOS prompt will not stop WATTCP from processing packets.
+   If the remote host is a pain and uses keep-alives - no problem.  People
+   can also PING your machine while you are shelled out.
+
+   To shell out press '!', other commands can be found by using 'h' or '?'
+
+4. A few slight changes were made to the Snuz application, including the
+   use of WATTCP configuration files which can simply Snuz configurations
+   for network servers.
+
+                             - - -
+
+To run Snuz you will need to have at least two files around, they are all
+easily created with a simple text editor such as edlin or qedit:
+
+   WATTCP.CFG  - should be in the same directory as SNUZ.EXE
+                 Here is a sample WATTCP.CFG
+        --WATTCP.CFG--------------------------------------------
+        my_ip   = 129.97.176.99
+        netmask = 255.255.254.0       ; example is a 23 bit subnet
+        nameserver = 129.97.129.140   ; a domain name server
+        nameserver = 129.97.128.196   ; a secondary name server
+        gateway = 129.97.176.1        ; my particular gateway
+        domainslist = "waterloo.edu"  ; often useful
+
+        ; snuz specific portion
+        ; my user's private disk is n: and the n:\internet subdir is tempspace
+
+        SNUZ.RC=n:\internet\snuz.rc     ; list of subscribed groups, etc
+        SNUZ.HOST=129.97.128.196        ; news server ipaddr or dns name
+        SNUZ.FROM=joe@mercy.steamroller ; the current user's id
+        SNUZ.EDITOR=j:\util\qedit       ; my favourite editor
+        SNUZ.SMTP=.\                    ; ignore this for now
+        --------------------------------------------------------
+               - there are tons of other options such as BOOTP
+               - you can specify local override files if you wish
+                 by moving portions of the above WATTCP.CFG file into
+                 a personal file and using the include directive to
+                 chain into the user's personal file.  For example,
+                 place the following into the above WATTCP.CFG
+                 and you can move the SNUZ.FROM field to a user's
+                 personal disk area.
+        --------------------------------------------------------
+        include = "c:\local.cfg"      ; must include that subfile or error
+        include = "?c:\local.cfg"     ; include the file if it exists
+        --------------------------------------------------------
+               - more configuration details are available via anonymous ftp
+                 to 129.97.128.196 in pub/wattcp/apps.zip.
+
+
+   SNUZ.RC     - tells snuz about your current news subscriptions
+               - gets updated whenever you finish Snuz
+               - try a sample file like the following
+        --SNUZ.RC-----------------------------------------------
+        comp.protocols.tcp-ip 1
+        comp.protocols.tcp-ip.ibmpc 1
+        alt.nerds.radioshack 1
+        --------------------------------------------------------
+
+I use a simple batch file to run/configure snuz for users, note that I get
+their userid from an environment variable and I assume the packet driver
+is already loaded.
+
+        --NEWS.BAT----------------------------------------------
+
+        if exist n:\internet\snuz.cfg goto olduser
+        echo first time news user... configuring your files
+        md n:\internet
+        echo news.announce.newusers 0 >  n:\internet\snuz.rc
+        echo uw.general 0             >> n:\internet\snuz.rc
+        echo SNUZ.FROM=%userid%       >  n:\internet\snuz.cfg
+
+        :olduser
+        snuz
+        --------------------------------------------------------
+
+That's about all the changes I made so far.  Here is some of Doug's
+documentation about the original Snuz.
+Erick.
+
+                                  - - -
+
+Snuz is a simple netnews reading program. It supports reading and posting
+News to an NNTP news server and in conjunction with an smtp program
+will post mail replies.
+
+Snuz is not "rn" or "nn" or "trn". It doesn't have kill files or threads.
+It does allow going to any article in any group. It can save articles to files.
+
+Snuz sometimes says that the host is trying to talk to you at the same
+time you are to it, and recommends quitting. Don't quit, just be patient,
+it seems to sort itself out.
+
+Snuz.rc lists the newsgroups you wish to read. It has the format of
+<newsgroup> <space> <number> (without the <>). Running Snuz with
+the argument -S Snuz.rc will generate a file containing all the newgroups
+your server has, together with appropriate numbers. These numbers are 
+the number of the first article you will read upon entering a group.
+You can edit the file produced by "Snuz -S Snuz.rc" to get the groups
+you want. You must have at least two good newsgroups listed.
+
+The user interface for Snuz is quite simple. Just enter the program and
+type "h" or "?" for a list of commands. If you just keep hitting return
+you will progress your way through all your News. One missing item:
+you can't back up a page during the reading of a long article. You can
+go back to the beginning by typing "=", or you can type F an get put
+into your editor, which will presumably allow looking around at will - 
+or even searching for things. Just be sure to tell Snuz not to
+actually post the article again!! This is done by not answering "y"
+to the question asked after your editor exits.
+
+Snuz has a simple mechanism so that you see cross-posted items only once:
+they appear only in the newsgroup which appears higher in your snuz.rc file.
+This is different from the way some other readers work, where they appear in
+the group you actually access first in time. This can be disabled by
+the X command.
+
+Snuz has no "post" command. You have to follow-up something. You can 
+easily do this by just editing the header. 
+
+The posting and mailing mechanism queues up all you items and processes
+them at the end of your session. If you send mail, it spawns the program
+"dsmtp.exe" to actually send it; posting is internal. This process,
+at least on my news and mail server, is amazingly slow - sometimes five
+minutes to send a single mail or news item!
+
+The supplied smtp mail program dsmtp.exe will send mail items independent of 
+Snuz if you make a file with appropriate From: myname@a.b.c.d and
+To: toname@e.f.g.h lines in the header. Just say "dsmtp filename mailservername".
+If you give dsmtp the filename "sendmail.lst", as does Snuz, it considers
+that as a list of files to mail, one filename to a line.
+
+Be SURE to get you config file set up so that you give a valid From:
+address: if your PC is like mine, mail to it will bounce - a very
+unpleasant situation. Put a place that mail WILL reach in your From:
+line. Test it by sending mail to yourself.
+
+The parts of Snuz I have written are public domain. It is based on older
+things which are freely distributable but not public domain. 
+
+                               - - -
+
+If you have problems, contact one of us and we will hopefully be able to
+sort them out.
+
+Doug McDonald (mcdonald@aries.scs.uiuc.edu)
+Erick Engelke (erick@development.uwaterloo.ca)
+

@@ -1,0 +1,25 @@
+This is the MSDOS port of Gnuchess 4.0 patchlevel 60.  It was compiled
+using the Microsoft C/C++ 7.0 optimizing compiler.
+
+No source codes are contained in this distribution; they can be obtain
+from the standard places (prep.ai.mit.edu).  Only the executables, the
+language file, the readable book and the binary book are included.
+
+I have used the following switches during the compilation.
+-DAG4 -DQUIETBACKGROUND -DNOSCORESPACE -DHISTORY -DGDX -DSEMIQUIETBOOKGEN
+-DNULLMOVE
+
+The static cache (-DCACHE) has been omitted as it requires LOTS of memory
+which is not available in DOS.
+
+I have also taken the liberty of correcting a few bugs that I have found
+(and reported to the development team).  I have enhanced the gnuan program
+to ignore moves that can be found in the book.
+
+On a 386-25 machine, gnuchess 4.0 clocked around 600-800 nodes/sec though
+it will probably clock more for the endgame.  (Pretty slow I thought).
+
+
+Chua Kong Sian
+<ccecks@nuscc.nus.sg>
+

@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       zip
+Description: Un outil d'archivage de fichiers, similaire … PKZIP
+Summary:     Un outil d'archivage de fichiers, similaire … PKZIP.
+Keywords:    freedos, zip, infozip, pkzip
+End

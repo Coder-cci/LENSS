@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       fdxms
+Description: Pilote XMS de remplacement pour les systŠmes '386 ou sup‚rieurs
+Summary:     Pilote XMS de remplacement pour les systŠmes '386 ou sup‚rieurs
+Keywords:    freedos, xms, himem
+End

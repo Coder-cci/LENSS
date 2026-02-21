@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       E100PKT
+Description: Pilote de paquets pour DOS
+Keywords:    net, ethernet, paquet, pilote, e100, intel
+End

@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       LSppp
+Description: Un petit pilote de paquet PPP pour DOS
+Keywords:    paquet
+End

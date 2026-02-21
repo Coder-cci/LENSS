@@ -1,0 +1,96 @@
+
+            Zmiy - a snake game (like Nibbles) for DOS and 8086/8088
+                    Copyright (C) 2013-2015 Mateusz Viste
+
+                         http://zmiy.sourceforge.net
+
+
+
+*** About ***
+
+Zmiy is a snake game designed for DOS and 8086/8088 processors. It's very
+small and pretty fast. Zmiy simulates graphics using a 80x50 text mode on VGA.
+If running on a non-VGA card, it will use the standard 80x25 mode.
+
+
+*** Controls ***
+
+Zmiy is entirely controlled via the keyboard. Key bindings are listed below:
+ Arrows - Change the snake's direction
+ Escape - Quit the game
+ Enter  - Pause the game (the 'P' key does the same)
+
+
+*** Scoring rules, lives & speed ***
+
+The scoring rules are simple: for every collected item, you get 10 points.
+When you hit an obstacle, you die. The number of lives you have depends on how
+much points you earned. A life costs 100 points. If, at the time of dying, you
+have enough points, then 100 points are deducted from your score, and you can
+replay the same level. If you don't have enough points, the game is over.
+The speed of the game is closely linked to your score. A bigger score means a
+higher speed. If your score decreases (because you loose lives), the speed
+will slow down. Note, that there is no speed change during the gameplay. The
+speed is computed at the begin of every level.
+
+
+*** System requirements ***
+
+Zmiy have very low requirements, but still, it needs at least:
+ - an 8086/8088 CPU,
+ - a CGA graphic card with a monochrome monitor (VGA and color recommended),
+ - MS-DOS 2.0+ or compatible,
+ - 30K of free conventional memory.
+
+
+*** Hardware timing vs. power saving ***
+
+As for most games, the gameplay quality of Zmiy is greatly impacted by the
+accuracy of how the game handles timing. A program usually achieves best
+possible timing by using a so-called 'busy loop', cycling the CPU whenever
+a delay is required. While this legacy method was successfully used by
+generations of programmers, it is far from being power efficient since the CPU
+must run at 100% power when the 'busy loop' is active.
+Zmiy tries to be power-friendly, and notifies the operating system during its
+'wait' periods, so the OS can perform whatever power-saving operations (like
+issuing HLT instructions to the CPU). This can, however, lead to a 'jagged'
+playing experience on some systems.
+If you feel the game is laggy, or behaves erratically, you might want to try
+using alternative power-saving mechanisms. See Zmiy's help for available
+options (zmiy /?).
+
+
+*** Building from source ***
+
+The Zmiy game is written in ANSI C (89). It has been compiled using the Open
+Watcom v1.9 compiler. A makefile is provided to automatize the entire build
+process (simply type 'wmake' to launch the compilation process).
+
+
+*** License ***
+
+Zmiy is written by Mateusz Viste, and released under the BSD "2-clause"
+license, included below.
+
+ Copyright (C) 2013,2014,2015 Mateusz Viste
+ All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+ 1. Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+ 2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

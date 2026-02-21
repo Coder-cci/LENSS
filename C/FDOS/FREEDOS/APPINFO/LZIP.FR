@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       Lzip
+Description: Compresseur de donn‚es bas‚ sur LZMA
+Summary:     Un compresseur de donn‚es bas‚ sur l'algorithme LZMA.
+Keywords:    command.com, shell, interactif
+End

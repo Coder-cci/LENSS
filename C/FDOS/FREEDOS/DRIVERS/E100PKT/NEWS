@@ -1,0 +1,35 @@
+E100PKT CHANGELOG
+
+0.3 (2022-10-16)
+    * Make make.bat's "package" argument work in subdirectories.
+    * Allow tabs in the command tail.
+    * Allow older devices whose CSR size isn't 0x40 to be installed and
+      modify the dump function to use the actual size. Thanks to
+      Dr. Nick Downing for finding this bug.
+
+0.2
+    * Add a "package" argument to make.bat.
+    * Add support for IRQ sharing.
+    * Check SP to make sure the BSS/stack don't overwrite each other.
+    * Compress information so it fits in 80x25 text mode.
+    * During unloading, close the handle if the call to f_terminate()
+      fails.
+    * Fix undefined behavior during unloading when:
+        1) The IRQ >= 8, and
+        2) The software interrupt vector is >= 7b
+    * In int_in_use() and handle_fr(), use OR instead of ADD when
+      checking for NULL pointers.
+    * Make print_nibble() smaller.
+    * More thoroughly verify the CSR IO BAR, and fix an off-by-one
+      error in the old verification code.
+    * Rather than dumping nothing at all when an error occurs, dump
+      what we can. For example, if the CSR IO BAR is invalid, we can
+      still dump PCI configuration space.
+    * Reduce the resident memory footprint from 4160 to 2560 bytes.
+    * s/1518/1514 since software never sees the FCS.
+    * Thank Intel for the programming manual.
+    * Verify that the number of bits in the EEPROM address field is
+      6 or 8.
+
+0.1
+    * Initial release

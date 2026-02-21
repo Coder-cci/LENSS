@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       more
+Description: Afficher un fichier texte ou la sortie d'un programme une page … la fois
+Summary:     Affiche le contenu d'un fichier texte ou la sortie d'un programme une page … la fois
+Keywords:    freedos, more
+End

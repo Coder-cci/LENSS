@@ -1,0 +1,242 @@
+This is a port of Lynx 2.9.0dev.10 to MSDOS/DJGPP.
+
+  Lynx is a fully-featured World Wide Web (WWW) client for users running
+  cursor-addressable, character-cell display devices such as vt100 terminals,
+  vt100 emulators running on character-cell display.  It will display Hypertext
+  Markup Language (HTML) documents containing links to files on the local system,
+  as well as files on remote systems running http, gopher, ftp, wais, nntp,
+  finger, or cso/ph/qi servers, and services accessible via logins to telnet,
+  tn3270 or rlogin accounts.
+
+
+
+1.:     DJGPP specific changes.
+        =======================
+
+        This port has been configured using DJGPP 2.06 (CVS repository code).
+        It has been configured to be build in the "0build" directory under the
+        top srcdir.
+
+        The port has been configured and compiled on WinXP SP3 and Win98SE.
+        There is no guarantee that this may be possible with any other DOS-
+        like OS.  Due to the use of long file names it will not be possible
+        to configure and compile without LFN support.
+
+        The port has been configured and compiled with support enabled for
+        BZIP2, ZLIB, PDCURSE, IDN, OPENSSL and WATT-32.  The used ports are:
+          http://ftp.delorie.com/pub/djgpp/current/v2apps/bz2-108a.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2gnu/lidn138b.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2tk/zlb1211b.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2tk/pdcur39a.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2tk/ssl102ub.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2tk/wat3211b.zip
+        Later versions may also work.  Previous versions have never been tested.
+        Programs compiled with openssl require the installation of a noise
+        source like:
+          http://www.rahul.net/dkaufman/noise063a2.zip
+        Programs compiled with WATT-32 requires a valid wattcp.cfg configuration
+        file.  This must reflect the used network environment and hardware.
+        The WATTCP.CFG environment variable must be set to point to this file.
+
+        The port has been configured and build without NLS support enabled.
+        To enable this feature, the latest ports of libiconv and gettext must
+        be installed:
+          http://ftp.delorie.com/pub/djgpp/current/v2gnu/licv116b.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2gnu/gtxt201b.zip
+        If you prefer NLS, then reconfigure the sources passing the nls flag
+        to the config.bat file.
+
+        The port has been configured with IDN support.  Having IDN support
+        requires installing the iconv port.  The following ports have been
+        used:
+          http://ftp.delorie.com/pub/djgpp/current/v2gnu/lidn138b.zip
+          http://ftp.delorie.com/pub/djgpp/current/v2gnu/licv116b.zip
+        No other versions have been tested.  Linking with the idn library
+        always requires also linking with iconv library because it provides
+        the requires character set recoding capability.
+
+        The program will look in the canonical directory, this is /dev/env/DJDIR/etc
+        for its control files like lynx.cfg and lynx.lss.  This behavior can
+        be changed by setting the LYNX_CFG and LYNX_LSS environment variables
+        to point to different files.  If the files cannot be found there, then
+        the program will try to load them from the installation directory of
+        lynx.
+
+        The program will support long file names inclusive names starting with
+        a dot if a LFN support driver is installed.
+
+        To be able to run the program, a DOS packet driver (PKTDRVR) is required.
+        This may be obtained from the card manufacturer or from one of the archives
+        of packet drivers (such as "http://www.lanet.lv/simtel.net/msdos/pktdrvr-pre.html"
+        or "http://ftp.freenet.de/pub/ftp.simtel.net/pub/simtelnet/msdos/pktdrvr/").
+        Even when only browsing local files, a NULLPKT packet driver is required
+        like nullpkt.zip.  The zip file can be downloaded as:
+          http://www.jumpjet.info/Application-Software/DOS/Hardware/2/NULLPKT/NULLPKT.zip
+
+        The lynx executable itself handles http:, https:, ftp:, file:, news:,
+        nntp: and gopher: protocols. You will need external programs if you
+        want to access telnet:, tn3270:, or mailto: URLs.  In this case a port
+        of kermit may be required.
+
+        When connecting to a site via https, lynx will require that a file of
+        trusted certificates is available.  It is yours responsability to create
+        such a file and the port will never provide one.  This file in .PEM 
+        format is created using openssl tools.  Read the openssl documentation.
+        A working linux installation provides always one.  It may be found by
+        the name ca-bundle.pem or similar.  In the end it must be a file in PEM
+        format.  Store it where you like and point to it by setting the corresponding
+        lynx environment variable like this:
+          set SSL_CERT_FILE=/dev/env/DJDIR/share/ssl/certs/ca-bundle.pem
+        Of course the value propossed is arbitrary and reflects the way I do
+        it for my own installation of lynx.  A starting point for reading about
+        how to create your own PEM files is:
+          https://lists.gnu.org/archive/html/lynx-dev/2002-12/msg00043.html
+        It describes how to create one using the trusted certificates provide
+        by the microsoft IE.
+        It is also possible to obtain up to date cert bundles from this site:
+          https://curl.se/docs/caextract.html
+        In this port, the last version available from thw above site has been
+        include.
+
+        The port does not support javascript at all thus it cannot be used where
+        this feature is required.
+
+        It is important to realize that this port will only work under plain
+        DOS.  It will not work in a DOS session of any Windows.  If for some
+        reason you think that lynx must be used under Windows, you should
+        download a windows port of lynx.
+
+        Only to make this point clear, if you want to use lynx as a stand alone
+        program without having to care about environment variables, copy lynx.exe,
+        lynx.cfg and lynx.lss into the same directory and it will work.
+        When copying the .PEM file it must be renamed to "cert.pem".  This is
+        mandatory or it will not be found.
+
+        As usual, all djgpp specific files (config.bat, diffs, README files,
+        etc.) are stored in the /djgpp directory.
+
+        For further information about Lynx please read the info docs and NEWS file.
+
+
+2.:     Installing the binary package.
+        ==============================
+
+2.1.:   Copy the binary distribution into the top DJGPP installation directory,
+        just unzip it preserving the directory structure running *ONE* of the
+        following commands:
+          unzip32 l290d10br2.zip      or
+          djtarx l290d10br2.zip       or
+          pkunzip -d l290d10br2.zip
+
+
+3.:     Building the binaries from sources.
+        ===================================
+
+3.1.:   Create a temporary directory and copy the source package into the
+        directory.  If you download the source distribution from one of the
+        DJGPP sites, just unzip it preserving the directory structure
+        running *ONE* of the following commands:
+          unzip32 l290d10sr2.zip      or
+          djtarx l290d10sr2.zip       or
+          pkunzip -d l290d10sr2.zip
+
+3.2.:   To build the binaries you will need the following binary packages:
+          djdev205.zip (or a later but NOT a prior version)
+          bsh205bbr3.zip (or a later but NOT a prior version)
+          gccNNNb.zip, gppNNN.zip, bnuNNNb.zip, makNNNb.zip, filNNNb.zip,
+          shlNNNb.zip, txtNNNb.zip, txiNNNb.zip, grepNNNb.zip, sedNNNb.zip,
+          pdcurNNNa.zip, mktmpNNb.zip and gwkNNNb.zip.
+
+        If you want to configure and compile this packages with NLS support
+        enabled you must install licvNNNb.zip and gtxNNNNb.zip.
+
+        You will also need the Watt-32 and the OpenSSL libraries wat3211b.zip
+        and ssl102ub.zip.  No previous versions.
+
+        NNN represents the latest version number of the binary packages.  All
+        this packages can be found in the /v2gnu directory of any
+        ftp.delorie.com mirror.
+        You will need bsh205bbr3.zip or later and *NOT* a prior version or
+        the build will fail.  The same applies to djdev205.zip.
+
+3.3.:   The package has been configured to be build in a separate build directory
+        under the top srcdir (aka lynx-2.9.0).  To build the binaries cd
+        into "0build" directory.  If for some reason you want to reconfigure the
+        package cd into the build directory and run the following commands:
+          del config.cache
+          make clean
+          ..\djgpp\config ./..
+
+        Please note that you *MUST* delete the config.cache file in the 0build
+        directory or you will not really reconfigure the sources because the
+        configuration informations will be read from the cache file instead
+        of being newly computed.
+        Please also note that the WATT_ROOT environment variable __MUST__
+        point to the installed WATT-32 port or the WATT-32 headers and libraries
+        will not be found.
+
+        config.bat, among other things, will start the configure script passing
+        to it a couple of arguments.  You can control these argument passing the
+        following command line arguments to config.bat:
+          nls or no-nls, default nls.  NLS support enabled.
+          cache or no-cache, default cache.  Cache in build directory.
+          dep or no-dep, default no-dep.  No dependency tracking.
+          silent or no-silent, default silent.  Controls the verbosity of the
+                                                build process.
+          zlib or no-zlib, default zlib.  Link lynx with zlib to enable
+                                          zlib compression support.
+          bzlib or no-bzlib, default bzlib.  Link lynx with bzip2 library to
+                                             enable bzip2 compression support.
+          ssl or no-ssl, default ssl.  Link lynx with OpenSSL to enable SSL v2/v3
+                                       and TLS v1 support.
+          trace or no-trace, default trace.  Enable logic for trace code.
+          vtrace or no-vtrace, default vtrace.  Enable verbose trace code.
+        All other configure specific options are not set by config.bat so their
+        values are left as they are.  If no arguments are passed to config.bat
+        then the default values are used.
+
+
+        To build the programs in a directory other than where the sources are,
+        you must add the parameter that specifies the source directory,
+        e.g:
+          x:\src\contrib\lynx-2.9.0\djgpp\config x:/src/contrib/lynx-2.9.0
+
+        Lets assume you want to build the binaries in a directory placed on a
+        different drive (z:\build in this case) from where the sources are,
+        then you will run the following commands:
+          z:
+          md \build
+          cd \build
+          x:\src\contrib\lynx-2.9.0\djgpp\config x:/src/contrib/lynx-2.9.0
+
+        The order of the options and the srcdir option does not matter.  You
+        *MUST* use forward slashes to specify the source directory.
+
+        The batch file will set same environment variables, make MSDOS specific
+        modifications to the Makefile.in's and supply all other needed options
+        to the configure script.
+
+3.4.:   To compile the package run from the directory where you have configured
+        the sources the command:
+          make
+
+3.6.:   To install the binaries and info docs run the following command from
+        the directory where you have configured the sources:
+          make install-full
+
+        This will install the products into your DJGPP installation tree given
+        by the default prefix "/dev/env/DJDIR".  If you prefer to install them
+        into some other directory you will have to set prefix to the appropriate
+        value:
+          make install-full prefix=z:/some/other/place
+
+
+
+        Send Lynx specific bug reports to <lynx-dev@nongnu.org>.
+        Send suggestions and bug reports concerning the DJGPP port
+        to comp.os.msdos.djgpp or <djgpp@delorie.com>.
+
+
+Enjoy.
+
+          Guerrero, Juan Manuel <juan.guerrero@gmx.de>

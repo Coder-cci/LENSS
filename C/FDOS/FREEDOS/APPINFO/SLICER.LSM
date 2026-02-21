@@ -1,0 +1,17 @@
+Begin3
+Title:          File Slicer
+Version:        0.24 (BETA)
+Entered-date:   2022-01-22
+Description:    Archive utility to categorize/split
+Summary:        A simple archive utility to categorize and split large files and directories across smaller media. It requires an 8086 with EGA or better graphics. (UPX Compressed)
+Changes:        General embedded text and display output improvements.
+Keywords:       dos 16 bit file archive span split slice
+Author:         Jerome Shidel <jerome _AT_ shidel.net>
+Maintained-by:  Jerome Shidel <jerome _AT_ shidel.net>
+Primary-site:   http://up.lod.bz/slicer
+Original-site:  http://fd.lod.bz/repos/current/pkg-html/slicer.html
+Alternate-site: https://gitlab.com/DOSx86/slicer
+Platforms:      DOS
+Copying-policy: Simplified (2-Clause) BSD License
+Modified-date:  2025-03-16.0
+End

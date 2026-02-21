@@ -1,0 +1,507 @@
+
+      The program contained  in this archive  and described further down
+      in this text  was almost completely  rewritten  by Jrgen Hoffmann
+      using BORLAND C++  Version 3.1  and the WATTCP  library  (by Erick
+      Engelke and others) during july 2008.
+
+      It is licensed under the EUPL V.1.1 and offered to the public free
+      of charge. The english text of this european public licence is in-
+      cluded in this archive.  Other,  equally valid text versions,  to-
+      gether with some useful explanations for non-lawers  are available
+      in all official languages  of the european union  and can be down-
+      loaded from this internet site: http://ec.europa.eu/idabc/eupl.
+
+      As the program  is distributed free of charge,  the author doesn't
+      accept any responsibility beyond that  what can reasonably  be ex-
+      pected from  any other kind of gift as well.  Even though the pro-
+      gram was thoroughly tested it cannot be excluded, that undiscoverd
+      errors  still exist.  Should you find such an issue,  feel free to
+      inform the author about it using the following e-mail address:
+      j_hoff@hrz1.hrz.tu-darmstadt.de
+
+
+
+      NTOOL is just another incarnation of the famous program NETCAT.
+
+      Unlike  other  versions,  particularly  the one from DOS Solutions
+      (see: www.dossolutions.pwp.blueyonder.co.uk/wattcp.htm) from which
+      it  was initially derived, it is not just an attempt to re-compile
+      the original UNIX sources under DOS. Rather it was almost entirely
+      rewritten,  considering  the  special abilities and limitations of
+      (MS-)DOS.  Some  features  have  been  removed, others were added,
+      therefore  it  was given a new name. Like its UNIX ancestor, it is
+      intended to be the "swiss army knife" of TCP-networking.
+
+      As NTOOL uses  the TCP/IP stack  for DOS written by  Erick Engelke
+      and others  from Waterloo university,  it requires a packet driver
+      and a configuration file (WATTCP.CFG) to run.  If a dhcp server is
+      available the configuration file is not absolutely necessary.
+
+
+
+      NTOOL can operate in two different modes.
+
+      In  LISTENING mode (also known as SERVER mode) it waits for incom-
+      ing  connections,  in DEFAULT mode (also named CLIENT mode) it at-
+      tempts to establish a connection to another host.
+
+      In  LISTENING  mode,  which  is  invoked  by the "-l" command line
+      switch,  it waits for incomming TCP connections on the local port,
+      specified by the "-p" command line switch. If such a connection is
+      established,  the  first  thing  it  will do, is wait for any data
+      coming  from  the  remote  host,  which  it will output to its own
+      stdout  channel.  This  is  the  screen by default, but can be re-
+      directed to a file using the ">"-operator.
+
+      As  soon as all data is received (determined by a time-out), or if
+      no data is received at all, it will send its own data to the remo-
+      te  host  in the following order:   First, the "initial string" is
+      sent, if one is specified by the "-s" command line switch. Next it
+      will  send  any data coming in via its own stdin channel. This may
+      be  the contents of a file, re-directed by the "<"-operator or the
+      output  of  another program, piped into NTOOL by the "|" operator.
+      Eventually,  if a command or program is specified by the "-e" com-
+      mand  line switch,  it will execute that program and send its out-
+      put  to  the remote host. When this sequence is completed, it will
+      close  the  connection and terminate, unless interactive operation
+      was specified by the "-i" command line switch.
+
+      In  DEFAULT (or CLIENT) mode, which is assumed if the "-l" command
+      line switch is _NOT_ specified, it will attempt to establish a TCP
+      connection  to the host and port specified on the command line. As
+      soon  as  this succeeds, it will begin sending its own data to the
+      remote  host,  in the same order as in listening mode. That means,
+      initial  string  (if  specified by "-s"), then data from stdin (if
+      any)  and  last the output of a program (if specified by "-e"). If
+      none of the three is the case, it will not send anything at all.
+
+      Eventually  it will wait for any data coming from the remote host,
+      possibly  but not neccessarily as a response to its own previously
+      sent data and output it via its own stdout channel. This again can
+      be re-directed to a file by the ">"-operator. If data transmission
+      is complete (determined by a time-out) or there is no data at all,
+      it  will  close  the  connection and terminate, unless interactive
+      operation was specified by the "-i" command line switch.
+
+      Interactive  operation  is possible in CLIENT as well as in SERVER
+      mode.  If  told to do so by the "-i" switch, NTOOL will, after all
+      other tasks are completed, not close the connection and terminate.
+      Rather  it  will  enter  into  an endless loop. In this loop it is
+      ready  to accept (human) user input, indicated by a prompt charac-
+      ter (">") on the local screen.  Any complete line of input will be
+      sent to the remote host and any data received from the remote host
+      will  be  sent  to stdout, ususally the screen. This way a (rather
+      rudimentary) communication between two humans, sitting in front of
+      two  different  hosts  and  applying two instances of NTOOL can be
+      established.  This loop  (and  thus  NTOOL) can only be terminated
+      gracefully  by  closing  the  connection from the remote end or by
+      hitting <CTRL/C> on the local keyboard.
+
+
+
+      SYNTAX for operating NTOOL in LISTENING (or SERVER) mode:
+
+         NTOOL -l -p <local_port> [ optional switches and parameters ]
+
+      SYNTAX for operating NTOOL in DEFAULT (or CLIENT) mode:
+
+         NTOOL [ optional switches ] <remote_address> <remote_port>
+
+      In CLIENT mode the remote_address and remote_port _must_ be speci-
+      fied  to  determine  the  host to which to connect to. This can be
+      done  in  one of two forms. The port number can immediately follow
+      the address, only separated by exactly one colon ":". Alternative-
+      ly  it  may  be separated from the address by one ore more spaces.
+      So, these two forms are acceptable:
+
+          192.168.77.93:1234         or         192.168.77.93  1224
+
+      In  LISTENING mode remote_address and remote_port are optional. If
+      only  an  address is specified, NTOOL will accept connections from
+      any source-port  but only from the specified host.  If address and
+      port are both specified,  they must match exactly.  If neither  is
+      specified (the default) any host is accepted.
+
+      The  following  switches  are  defined. Most of them are optional,
+      sometimes depending on the mode:
+
+        -h this helptext
+
+           If  this  switch is specified on the command line, NTOOL will
+           display a short help text and terminate immediately.
+
+        -g <str> get TCP/IP configuration
+
+           If this switch is  specified on the command line,  NTOOL will
+           display its  basic network  parameters: own ip address,  net-
+           mask,  default gateway and,  if defined,  first nameserver in
+           the following form: <str><name>=<value>.  Then it will termi-
+           nate immediately. As NTOOL is linked with a relatively recent
+           version of the  WATTCP library, supporting dhcp,  this can be
+           used to inspect the automatically optained parameters.
+
+           The string defined by the <str> argument will be prepended to
+           each line of output, unless it consists only of space charac-
+           ters, in which case it will be suppressed completely.  If, in
+           this case the output is directed into a file named WATTCP.CFG
+           this file can be used as (basic) configuration file. If <str>
+           is defined as "SET ",  the output can be directed into a file
+           which can  serve as batchfile  to set  environment parameters
+           which in turn can be further processed in any way.
+
+           This  allows you to dynamically generate a configuration file
+           defining  statically  the same parameters as dhcp would find.
+           This  way  many older programs not (properly) supporting dhcp
+           which are still around can benefit from automatic TCP/IP con-
+           figuration.
+
+        -l listen on port for connection
+
+           This switch causes NTOOL to operate in LISTENING mode
+
+        -p <lp> local port to use (1 - 65535)
+
+           This switch, which must be followed by a port number, is man-
+           datory  in LISTENING mode to define the port where NTOOL will
+           listen for incoming connections. In DEFAULT mode it is optio-
+           nal.  If  specified,  it defines the source port number of an
+           outbound  TCP  connection.  If  not  specified  an  arbitrary
+           default port number will be used for that purpose.
+
+        -i interactive mode
+
+           This switch, when specified, causes NTOOL to operate interac-
+           tively, as described above.
+
+        -t telnet mode (implies interactive)
+
+           Interactive  operation has two 'flavors', which differ in the
+           way incoming data is processed. In standard mode any chunk of
+           data received from the remote host, is sent to stdout immedi-
+           ately.
+
+           In  telnet mode, which automatically implies interactive ope-
+           ration, incoming data is collected until a carriage return or
+           newline is received such that only complete lines of text are
+           sent  to stdout. In addition some (very limited) line editing
+           capabilities are available. This mode is especially suitable,
+           if  the  remote  end  is  not another instance of NTOOL but a
+           TELNET client, as this mode also provides for some very basic
+           telnet  parameter negotiation. If the "-m" switch (see below)
+           is  set  too,  NTOOL informs the remote end that it will echo
+           all  incoming data. The switch combination "-ltm -p 23" turns
+           NTOOL into a (very basic) TELNET server.
+
+           In telnet-client mode,  if the "-t" switch is specified,  but
+           the "-l" switch is NOT, special rules apply which are descri-
+           bed in greater detail in a separate section further below.
+
+        -e "cmd" execute command
+
+           This  command  line switch  allows to  define a  DOS  command
+           (internal or external,  even batchfiles)   or any  other  DOS
+           program,  which will be executed in the way  described above.
+           Beware however,  that DOS is  not a multitasking environment.
+           NTOOL is suspended while the program executes  and is resumed
+           only after the program terminates. Therefore the program must
+           be able to perform its operation  without further user inter-
+           vention.  If a program waits for user input, it will wait for
+           ever, locking-up the system.  Beware also that programs which
+           use the packet driver themselves,  might leave it  in a state
+           which doesn't allow NTOOL to properly resume operation.
+
+           In telnet server mode,  if the "-l", "-e"  and  "-t" switches
+           are specified altogether,  execution of the  external program
+           is carried out a little bit differently. The program will not
+           be executed once during the normal operation.  Rather it will
+           be executed inside the interactive loop. Each time a new line
+           of input is complete, it will  be  executed  again,  with the
+           newly arrived input line passed as command line argument.
+
+        -o pipe output of "-e" through tempfile
+
+           The  output of the program defined by the "-e" switch will be
+           sent to the remote host. This can be done in one of two ways.
+           Without  the  "-o" switch being specified, NTOOL simply tries
+           to detect after the external program terminated what it wrote
+           to the screen and sends that text to the remote host. This is
+           fast  and  works  very well, but only for programs which pro-
+           duce  little  output,  because  text that scrolled out of the
+           screen during program execution is simply lost.
+
+           If  the  "-o"  switch  is  specified,  together with the "-e"
+           switch,  then  the output of the external program will be re-
+           directed into a temporary file and after the program termina-
+           ted  the contents  of this file  is sent  to the remote host.
+           This  works slower but any amount of output data can be hand-
+           led that way.   However quite a number of DOS-programs do not
+           write  their  output  properly  to  stdout and thus cannot be
+           piped into a file.  These programs  cannot be  used with  the
+           "-o"  switch.
+
+           If an environment variable named "TEMP" exists, NTOOL assumes
+           that  it  denotes a directory suitable to place its temporary
+           file. If it does not exist NTOOL will look for an environment
+           variable  "TMP".  If that doesn't  exist either,  it uses the
+           directory where NTOOL.EXE resides.  The name of the temporary
+           file is always NTOOL.TMP.
+
+           If the external command is a batch file,  the "-o" switch may
+           cause problems, as many flavors of DOS do not allow to re-di-
+           rect the output of a whole batchfile. If however, the indivi-
+           dual programs,  called within the batchfile  write themselves
+           directly into the temporary file (NTOOL.TMP), it may work.
+
+        -m mirror (echo) data back to remote
+
+           If  the "-m" switch is specified, each chunk of data received
+           from  the  remote host will be immediately sent back, like an
+           echo.  If NTOOL is used on both ends of the connection, avoid
+           specifying  this switch  on both sides,  as this will lead to
+           endless mirroring and re-mirroring of the data, thus flooding
+           the network.
+
+        -x show incoming data as hex dump
+
+           Specifying  the  "-x" switch causes NTOOL to display incoming
+           data  in  hexadecimal form, much like the one known from many
+           dump utilities.
+
+        -s <str> string to be sent initially
+
+           This switch allows to define a short (maximum 128 characters)
+           message  which,  if  specified,  will be the first data NTOOL
+           will send to the remote host. This string will be sent exact-
+           ly as specified, nothing will be prepended or appended to it,
+           especially no carriage return or linefeed characters. However
+           several C-style escape sequences are recognized  to allow the
+           specification of non-printing characters:
+
+           \b   back space
+           \e   escape
+           \f   form feed
+           \n   new line
+           \r   carriage return
+           \t   tabulator
+           \<n> any byte of value <n>. (Even zero-bytes "\0")
+
+                Unlike  similar programs, NTOOL interpretes <n> as deci-
+                mal number,  consuming as many digits  as are available,
+                but then taking only the least  significant  byte of the
+                result.  A dot (".") immediately following the number is
+                silently  ignored. This can be used to resolve the ambi-
+                guity which exists if a digit to be interpreted as ordi-
+                nary  character  immediately follows such a special cha-
+                racter.   E.g. the  sequence  "AB\67.123" will result in
+                "ABC123". If a dot is to follow such a special character
+                simply put two dots.
+
+        -w <sec> wait, default = 0(listen), 3(client)
+
+           The "-w" command line switch defines a non-standard time-out.
+           In  LISTENING mode it determines how long NTOOL will wait for
+           incoming  connections.  In  this mode the default value is 0,
+           meaning it will wait forever, until a connection is establis-
+           hed or NTOOL is aborted by <CTRL/C>.
+
+           In DEFAULT mode it defines how long NTOOL will wait for data,
+           after  the  connection  is  established and its own data have
+           been sent. In this mode the default is 3 seconds.
+
+        -z <p2> upper limit of port scan range
+
+           NTOOL  can  be  used as a simple port scanner. Specifying the
+           "-z"  switch,  followed by a port number greater than the one
+           specified  as  remote_port, causes NTOOL to cycle through the
+           whole  range  of  port  numbers  defined  by  the two limits.
+           Actually  port  scanning is just a variant of ordinary CLIENT
+           mode  (only mirroring, interactive mode and input coming from
+           stdin  are  disabled).  Thus it is e.g. possible to define an
+           initializing string ("-s") which will be sent to each scanned
+           port.
+
+        -v verbose debug information
+
+           Specifying the "-v" switch causes NTOOL to report more verbo-
+           sely, what it is doing. These messages are sent to stderr, so
+           they will always  appear on the screen,  not interfering with
+           data which is  sent to stdout and possibly re-directed into a
+           file.
+
+        -d <lvl> WATTCP debug level
+
+           The  number ("<lvl>") defined by the "-d" switch is just pas-
+           sed to the WATTCP library, where it is supposed to cause cer-
+           tain debug information to be displayed.
+
+
+      In telnet-client mode,  if the "-t" switch  is specified,  but NOT
+      the "-l" switch,   processing  differs  from  default  interactive
+      client operation in the following ways:
+
+      1. No prompt  (">")  is displayed  on the  local screen,  as it is
+         assumed that the TELNET server on the  remote host will provide
+         its own prompt.
+      2. Input on the  local keyboard  is not compiled  until a complete
+         line is terminated  by a <RETURN> key,  rather each key is sent
+         to the remote host immediately  and possibly echoed from there.
+         In  addition,  the  unshifted  PgUp/PgDown/Pos1/End/Ins/Del and
+         cursor keys are translated into  proper escape-sequences before
+         being transmitted.
+      3. The most basic ansy-escape sequences, the ones for cursor move-
+         ment, clear-screen and clear-to-end-of-line,  are recognized in
+         incoming data and properly processed,  unless the output is re-
+         directed into a file, in which case cursor movement dosn't make
+         sense. Some basic TELNET parameter negotiation is performed.
+      4. If eather the initial string is specified by the "-s" switch or
+         stdin comes from a file,  the normal sequence of  client opera-
+         tion is extended in such a way,  that NTOOL first waits for any
+         data to be received  from the  remote host,  then sends its own
+         data as described above and eventually  waits another time  for
+         incoming data.  This is done to allow TELNET parameter negotia-
+         tion and any  wellcome message to be processed during the first
+         wait-for-data phase, then send own data, e.g. a login parameter
+         or even a command sequence  and eventually receive the results.
+         If the TELNET server is very slow, it might be necessary to use
+         the "-w" switch to increase the time-out.
+      5. If stdout is re-directed into a file, the interactive loop will
+         not be entered after data transmission is complete, the program
+         will rather close the connection and terminate. This is done as
+         interactive operation is not useful when the output is not dis-
+         played on the screen.  In addition it makes it possible  to run
+         fully automated TELNET sessions by specifying a command sequen-
+         ce which writes the results into a file on local machine.
+
+      Telnet-client mode has been tested and worked with "telnetd" under
+      LINUX,  "kpym" under windows NT4.0  and the TELNET interface of  a
+      dedicated router-box. This makes it likely to work with other ser-
+      vers too, but of course it cannot be garanteed.
+
+
+
+      Upon termination NTOOL returns the following exit codes, which can
+      be accessed in batchfiles by the "IF ERRORLEVEL <n>" command:
+
+           0: Normal termination, task completed
+           1: Aborted by <CRTL/C>
+           2: Command line error, helptext displayed
+           3: Any other kind of error
+
+
+
+
+      EXAMPLES
+
+      File transfer (download)    SERVER ---> CLIENT
+
+      source:       NTOOL -l -p 2222 < file.dat
+
+      destination:  NTOOL 192.168.1.95:2222 > file.dat
+
+
+      File transfer (upload)      CLIENT ---> SERVER
+
+      source:       NTOOL 192.168.1.95   2222 < file.dat
+
+      destination:  NTOOL -l -p 2222 > file.dat
+
+      alternative:  NTOOL -l -p 2222 -e "dir file.dat" > file.dat
+
+      This is a simple way  to transfer a file via TCP/IP  from one host
+      to another. As the transfer takes place in binary form,  it is not
+      limited to textfiles.  When transfering files from  MS-DOS to UNIX
+      or vice versa,  additional software may be needed to remove exces-
+      sive carriage return chartacters or to add missing ones.  But this
+      problem is not limited to NTOOL, it is characteristic to all kinds
+      of file transfer between theese two unlike operating systems.  The
+      alternative form of  the upload transfer  does the same job as the
+      sipmler one, but in addition it returns a directory listing to the
+      source after the transfer is complete  and thus gives some kind of
+      feed-back about the success of the operation.
+
+
+      Simple textual user to user communication
+
+      source:       NTOOL  -i -s Hello\r\n\n 192.168.1.95   2222
+
+      destination:  NTOOL -li -s Howdy\r\n\n -p 2222
+
+      As soon  as the communication  is established  the two systems ex-
+      change short greeting messages then a prompt (">") is displayed on
+      each of the local screens.  At this point any one of the two users
+      can enter  any text.  As soon as  a line of text  is terminated by
+      hitting the return key, it is sent to the other end of the connec-
+      tion and displayed on the screen.  This will continue until one of
+      the users hits <CTRL/C> on his local keyboard.
+
+
+      Very basic WEB server
+
+           @echo off
+           :loop
+           ntool -l -p 80 < message.htm
+           if not errorlevel 1 goto loop
+
+      This short batch file turns NTOOL into a _very_ simple WEB server.
+      It can and will only return a  single WEB page no matter  what the
+      client requested. But for testing purposes or a temporary  "out of
+      order message"  while the  actual WEB server  is down  this may be
+      enough.  Mind the  "if" clause  at the end of the file.  It causes
+      NTOOL to  restart  as soon  as the  document  has been  transfered
+      making it ready for the next request,  unless it has been termina-
+      ted by  <CTRL/C>  (or some error)  in which case  the loop will be
+      left.  The text of the request is displayed on the local screen of
+      the server. This way it is possible to inspect which information a
+      particular browser sends to a server.
+
+
+      An extremely (!!!) simple textual WEB browser
+
+          NTOOL -s "GET  /\tHTTP/1.1\n" 192.168.1.95:80 | hlist -f
+
+
+      A simple TELNET server
+
+          NTOOL -ltm -p 23 -e "dir " -s "TELNET directory lister\r\n\n"
+
+      In this case  the remote end  is typically  not formed  by another
+      instance of NTOOL but rather by an ordinary TELNET client. As soon
+      as the connection  is established,  the server will present itself
+      with the short message  defined by the  "-s"  command line switch.
+      Then a prompt (">")  is displayed  on the TELNET client's  screen.
+      A user can now enter any valid directory mask,  or even nothing at
+      all.  As soon as the return key is hit,  the text transfered  from
+      the client will be appended to the string defined by the "-e" com-
+      mand line switch to form the command to be executed.  If this text
+      represents a valid directory mask the corresponding directory lis-
+      ting is sent back to the client and displayed there on the screen.
+
+
+      A simple TELNET client
+
+          NTOOL -t 192.168.1.16:23
+
+
+      Automated TELNET execution 
+
+          NTOOL -s "user\r\password\rls -l\r" -t 192.168.1.16:23 > log.fil
+
+      This command sequence  would connect to  a remote (LINUX-) system,
+      log in as "user" with "password", issue there the command "ls -l",
+      write the result to the local file "log.fil", close the connection
+      and terminate. Of course "user" and "password" have to be replaced
+      by correct  actual values  and the whole  command sequence  in the
+      "-s" argument may vary, according to the target system.
+
+
+      A simple port scanner
+
+          NTOOL -z 1023 192.168.1.95:1
+
+      This way  NTOOL  will attempt to establish connections to the spe-
+      cified host cycling through  ports from 1 to 1023.  The results of
+      these attempts  are send to stdout,  so they will be  displayed on
+      the screen by default but can also be re-directed to a file to do-
+      cument the results.
+
+   

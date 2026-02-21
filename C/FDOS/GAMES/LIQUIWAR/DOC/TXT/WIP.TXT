@@ -1,0 +1,63 @@
+Liquid War (v5.6.4) - Work in progress
+
+
+
+
+Note on releases
+================
+
+
+  Whenever Liquid War is released, I usually pass the good news to Freshmeat (
+  http://freshmeat.net/projects/liquidwar/ ). Then all releases are accessible
+  from the main download page, which is
+  http://www.ufoot.org/liquidwar/v5/download.
+
+  Releasing the game takes time, for I want all binaries to install properly
+  and sources to compile cleanly. Therefore there might be some delay before
+  the time coding is over and the time a release is actually ready. So for
+  impatients and/or for people who need to test out the very latest versions
+  (eg someone who wants to compile the game on a new platform), it's possible
+  to access the source repository directly.
+
+
+
+About GNU Arch
+==============
+
+
+  I use GNU Arch (Tom Lord's Arch in fact,
+  http://www.gnu.org/software/gnu-arch/ ) instead of the previously used CVS.
+  Indeed, tla has some very fancy features such as signing patches with gpg,
+  and I'm tired of suffering CVS limitations.
+
+  So FYI the previously active CVS repositories, on Sourceforge and Savannah,
+  are currently unmaintained.
+
+
+
+How to get latest releases
+==========================
+
+
+  * Step 1: read the excellent Arch tutorial
+    http://regexps.srparish.net/www/tutorial/html/arch.html if you are not
+    familiar with tla. I admit there's a steep learning curve, but it's yet
+    clear and understandable.
+
+  * Step 2: point on the repository, which is accessible (read-only) on
+    http://arch.sv.gnu.org/archives/liquidwar/.
+
+  A typical set of tla commands would be:
+
+  tla register-archive http://arch.sv.gnu.org/archives/liquidwar
+  tla get -A liquidwar@sv.gnu.org liquidwar6--stable
+
+  If you are interested, I can open this repository in read/write mode, however
+  one of the points of GNU Arch is that it allows cooperative developpement
+  with multiple depots, so this isn't mandatory. And anyways, importing myself
+  patches received by email has never been a real burden.
+
+  Besides, most developpement is now done on Liquid War 6. See
+  http://www.gnu.org/software/liquidwar6/ or http://www.ufoot.org/liquidwar/v6
+  for more informations.
+

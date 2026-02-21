@@ -1,0 +1,13 @@
+* FancyMines v1.00 *
+Author: Mateusz Viste
+
+FancyMines is a minesweeper-like game with some
+graphical themes. It runs in DOS, Windows and
+Linux. FancyMines is released under the terms
+of the GNU/GPL license.
+
+To run the game in windowed or fullscreen mode,
+one can use following parameters:
+
+--setfullscreen (game starts in fullscreen mode)
+--setwindowed   (game starts in windowed mode)

@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       LZMA Utils
+Description: Arbeitet mit LZMA-komprimierten Dateien.
+Summary:     Arbeitet mit LZMA-komprimierten Dateien (anders als 7z).
+Keywords:    lzma
+End

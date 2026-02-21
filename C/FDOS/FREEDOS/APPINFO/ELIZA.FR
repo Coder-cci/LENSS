@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       Eliza
+Description: L'une des premiäres IA de robot de discussion
+Summary:     L'une des premiäres IA de robot de discussion
+End

@@ -1,0 +1,92 @@
+
+			   How to use codepages
+ 			   --------------------
+
+				Thanks to:
+		    Kosta Kostis (kosta@blues.sub.de).
+		      Lev Maximov (lev@land7.nsu.ru)
+		 Daniel Nagy (nagyd@users.sourceforge.net)
+
+
+This document describes how to use ISO Latin or KOI8 characters with SSHDOS.
+
+
+		     Table of all supported codepages
+ 		     --------------------------------
+
+ISO code  keyboard   Codepage    CPI file        Notes
+8859-1    isokb850   819         ISOLATIN
+8859-2    isokb852   912         ISOLATIN
+8859-5    isokb866   915         ISOOTHER        (original)
+8859-5    koi8	     915         KOI8	         (remapped)
+8859-9    isokb857   920         ISOLATIN
+koi8-r    koi8	     866         KOI8
+
+
+			Recipe for codepage support
+			---------------------------
+
+1. Copy the proper keyboard and .cpi file to your DOS directory.
+
+2. Add this line to your config.sys:
+
+	device=c:\dos\display.sys con=(ega,xxx,2)
+
+   where xxx is the DOS codepage you normally use (850 for Western Europe).
+
+3. Add the following lines to your autoexec.bat to prepare the code
+   page switch:
+
+	mode con cp prepare=((xxx)cpifile)
+	mode con cp select=xxx
+	keyb zz
+
+   where xxx is the DOS codepage you normally use, cpifile is the proper
+   CPI file name for your codepage and zz is your country code.
+
+4. We switch to the needed codepage by running these commands:
+
+   For koi8:
+
+	koi8.com
+	mode con cp prepare=((866)koi8.cpi)
+	mode con cp select=866
+
+   For Latin:
+
+	isokbxxx.com
+	mode con cp prepare=((yyy)cpifile)
+	mode con cp select=yyy
+	isokbxxx.com /a
+
+   where isokbxxx is the proper keyboard driver, cpifile is the
+   CPI file for your codepage and yyy is the codepage you want to
+   switch to.
+
+5. Connect to your host with SSHDOS and be sure that 8 bit
+   characters are enabled. For example in BASH, you must include
+   this in your .inputrc:
+
+	set input-meta On
+	set output-meta On
+	set convert-meta Off
+
+6. Disconnect, reconnect and have fun :)
+
+
+			Notes for keyboard drivers
+			--------------------------
+
+Translation is enabled, when SCROLL LOCK is on. Use the SCROLL LOCK
+key to turn translation on and off.
+
+koi8.com:
+	Usage:
+ 	/u	unload koi8.com
+
+isokbxxx.com:
+	Usage:
+	/s        display current status (default when loaded)
+	/u        unload ISOKeyb, restore original int 16h and free memory
+	/a        activate translation
+	/d        deacticate translation

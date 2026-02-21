@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       UIDE
+Description: Universeller Caching-Treiber fÅr DOS.
+Summary:     Ein universeller Caching-Treiber fÅr DOS-Laufwerke, Disketten, CD/DVD, SATA und UltraDMA-Festplatten.
+Keywords:    ahci, cache, cc, cd, cd-rom, cdrom, disk, dma, driver, eide, floppy, ide, pata, rom, sata, sata, uhdd, uide, ultra
+End

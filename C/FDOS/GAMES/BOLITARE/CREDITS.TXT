@@ -1,0 +1,34 @@
+Bolitaire 0.62a 12th Mar 2005
+----------------------------
+
+Thanks to jim horne for the code to generate ms deals.
+Thanks to RayBrujo for the windows rand() function code.
+Thanks to Fladimir da Gorf for helping with scroll bar.
+
+Thanks to RayBrujo, kazzmir, Evert, lillo from allegro forum
+
+Softwares used to create Bolitaire are
+
+allegro       : Grahics programming library.
+alrand        : Portable random number generator.
+allegro mp3   : the mp3 library used for AL AMP
+jpgalleg      : for backgrounds and few pictures.
+dev-cp        : My favourite windows c/c++ IDE.
+freedos9rc5   : the dos os used for bootable Bolitaire.
+cwsdpmi       : dpmihost.
+card pictures : I got it from the internet.
+
+Thanks to linux,gcc,kde,allegro forum...
+and those I left :-)
+
+
+This software is dedicated to my brother M. Ravi shankar and
+his two year old son R Varun chand, also dedicated to my mother
+and father, and all of my family members.
+
+
+
+
+
+
+     

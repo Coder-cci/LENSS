@@ -1,0 +1,104 @@
+
+ -----------------------------------------  "All that is gold does not glitter
+ |  AMB: ANCIENT MACHINES BOOK READER    |   all that is long does not last
+ |     Copyright (C) Mateusz Viste       |   All that is old does not wither
+ |    http://ambook.sourceforge.net      |   not all that is over is past."
+ -----------------------------------------                 [J. R. R. Tolkien]
+
+
+AMB is a reader of eponymous AMB (Ancient Machine Book) files. AMB stands for
+"Ancient Machine's Book". It is an extremely lightweight file format meant to
+store any kind of hypertext documentation that may be comfortably viewed even
+on the most ancient PCs: technical manuals, books, etc. Think of it as a retro
+equivalent of a *.CHM help file.
+AMB is a multiplatform tool, available for Linux, Windows and real mode DOS.
+It is designed for minimum hardware requirements - the DOS version needs an
+IBM PC-compatible machine with DOS 2+ and 64 KiB of available RAM.
+
+
+=== USAGE ====================================================================
+
+Start the AMB reader with the following syntax:
+
+  AMB FILE.AMB [chaptername]
+
+FILE.AMB is the AMB book that you wish to read, while the optional chaptername
+argument allows to specify the name of the chapter you'd like AMB to start
+from (otherwise it will use the default "index" page).
+
+Once loaded, you may navigate through the book using a mouse or the keyboard:
+
+ UP/DOWN      move the cursor up/down (scrolls the document when necessary)
+ LEFT/RIGHT   move the cursor left/right on the current line
+ PGUP/PGDOWN  move one page up or down
+ TAB          jump to next link
+ ESC          either move to previous page or (if no previous page) quit
+ ENTER        follow the currently highlighted link
+
+When using a mouse, you can scroll the document by clicking on the right
+cursor bar and follow links by clicking twice on them.
+
+
+=== CONTACT ==================================================================
+
+Should you wish to contact me, you will find instructions about how to do so
+on my personal homepage at http://mateusz.viste.fr
+
+
+=== CHANGELOG ================================================================
+
+AMB ver 20250110 (patches kindly contributed by Jens Guenther):
+ - fixed screen garbling on PGUP
+ - added handling of HOME and END keys
+
+AMB ver 20240131:
+ - improved color scheme for better contrast on oldish monitors
+
+AMB ver 20201223:
+ - jumps to a specific chapter when specified as command line argument
+ - mouse support
+ - optimized display routines (refresh only lines that may have changed)
+ - optimized next-link-lookup (tab) so it is fast even on a 4 MHz PC
+ - optimized memory usage
+ - reloading same page does not insert a new history position
+ - ported to the Windows platform (compiled with Mingw)
+
+AMB ver 20201218:
+ - unicode output (on platforms that support it)
+ - support for "notice" AMA tags (%!)
+ - tab key jumps to next link
+ - monochrome scheme is used on colorless terminals
+
+AMB ver 20201205:
+ - pgup/pgdown handling
+ - cursor is not allowed to be moved past the last line of content
+ - bad links trigger an error message instead of loading a default file
+ - confirmation is asked before quitting
+
+AMB ver 20201203:
+ - first public release
+
+
+=== LICENSE ==================================================================
+
+This software is published under the terms of the MIT license.
+
+Copyright (C) 2020-2025 Mateusz Viste
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

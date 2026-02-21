@@ -1,0 +1,18 @@
+Begin3
+Title:           Lynx
+Version:         2.9.0-dev.10r2
+Entered-date:    2021-11-30
+Description:     Lynx text and graphics WWW browser
+Summary:         Lynx text and graphics WWW browser (DJGPP port, includes noise v0.6.3-beta)
+Keywords:        www, browser, internet
+Author:          Thomas E. Dickey
+Maintained-by:   Juan Manuel Guerrero
+Original-site:   http://lynx.browser.org
+Primary-site:    http://www.delorie.com/pub/djgpp/current/v2tk/
+Mirror-site:     ftp://ftp.delorie.com/pub/djgpp/current/v2tk/
+Alternate-site:  https://www.delorie.com/archives/browse.cgi?p=djgpp-announce/2021/11/13/04:31:31
+Platforms:       DOS, FreeDOS
+Copying-policy:  GNU General Public License, Version 2
+Modified-date:   2025-03-16.0
+Long-file-names: true
+End

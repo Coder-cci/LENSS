@@ -1,0 +1,12 @@
+version 0.9 (August 26 2011)
+
+* Welcome to the first public release of the Senet game! It's not
+  interactive (yet) but it does play a good game of Senet by
+  itself. One side plays a defensive game, the other plays an
+  agressive game. Released under the GNU GPL version 2.
+
+version 1.0
+
+* Complete re-write of Simple Senet, this time for FreeDOS. This lets
+  two players play a complete game of Senet. The game rules have been
+  updated/simplified from version 0.9.

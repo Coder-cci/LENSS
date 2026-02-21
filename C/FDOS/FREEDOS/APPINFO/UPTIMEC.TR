@@ -1,0 +1,7 @@
+Begin3
+Language:    TR, 857, Turkish
+Title:       Uptime (Chamorro)
+Description: Sistemin áalçüma sÅresini raporlar
+Summary:     Sistemin áalçüma sÅresini sistemin ne zaman baülatçldçßçnç otomatik olarak algçlayarak gîsterir. Temel UNIX komutlarçndan olan ve son yeniden baülatmadan veya baülatmadan beri sisteminizin ne kadar sÅredir áalçümakta oldußunu kolayca teyit etmenizi saßlayan *NIX uptime'çn iülevini DOS'a getirir.
+Keywords:    uptime
+End

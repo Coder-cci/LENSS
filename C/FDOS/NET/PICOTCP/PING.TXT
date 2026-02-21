@@ -1,0 +1,15 @@
+
+     ping - a ping troubleshooting tool for the picotcp4dos TCP/IP stack
+                     Copyright (C) 2015 Mateusz Viste
+
+                    http://picotcp4dos.sourceforge.net
+
+
+This is the "documentation" of the ping command shipped with the picotcp4dos
+stack. ping loads the networking configuration pointed by the %PICOTCP%
+environment variable.
+
+Syntax:  ping host
+
+where "host" can be either an IP address, or a host name (in the latter case,
+a DNS name resolution will be attempted).

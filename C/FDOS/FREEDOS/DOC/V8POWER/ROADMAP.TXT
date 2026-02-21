@@ -1,0 +1,42 @@
+*******************************************************************************
+V8Power Tools
+Copyright 2015-2021 Jerome Shidel
+Released under GPL v2.0 License.
+*******************************************************************************
+
+Putting the power of an 8-cylinder engine under the hood of DOS batch files.
+
+===============================================================================
+
+Fix vinfo CPU reporting with a better algorithm. My Pentium Pro reports 686 (as
+it should). However, my 486DX2-66 stops and reports 186 not a 486.
+
+Probable roadmap for the future of V8Power Tools:
+
+    vask - add /k option support
+
+    vfdutil - allow /m to accept root directory or just drive
+    vfdutil - freespace output using same factor as /r input (ie K, M, etc)
+    vline - additional options like smart and vertical
+    vinfo - more system information provided by utility.
+    vstr - Like trim, squeeze, implode, explode...
+    vecho - Word wrapping and more control-code ascii support.
+    vpcspkr - More music style support like maybe, C#, C. and such.
+    vver - verify all utils are present and proper version.
+    veach - duplicate checking and some other options
+    vchoice - old style [Y/N] style choices
+
+    vreadkey - Postponed, keyboard input.
+    vchkbox - Postponed, Checkboxes.
+    vview - Postponed, Text file viewer, user license agreement and whatnots..
+
+    vchoice, vpause, vask, vview, vchkbox - Mouse, Hot Key and button support.
+
+    More range checking, prevent possible freeze/lockup when developer uses
+    really bad settings.
+
+    Migrate to new codebase design & layout, (v8-*.inc)
+
+    Optimizations and byte squeezing.
+
+

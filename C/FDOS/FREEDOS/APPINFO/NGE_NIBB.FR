@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       NGE Nibbles
+Description: Version du jeu classique de serpent
+Summary:     Une version graphique du jeu classique de serpent pour DOS.
+Keywords:    nibbles
+End

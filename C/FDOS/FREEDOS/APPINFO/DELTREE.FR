@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       DELTREE
+Description: Supprimer des fichiers et des r‚pertoires
+Summary:     Supprimer des fichiers et des r‚pertoires avec tous les fichiers et sous-r‚pertoires inclus.
+Keywords:    freedos, effacer,arborescence
+End

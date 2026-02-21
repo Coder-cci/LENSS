@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       DWOL
+Description: Calculer et envoyer les paquets 'wake-on-lan'
+Summary:     Petit utilitaire qui calcule et envoie les paquets 'wake-on-lan'
+Keywords:    dos r‚seau
+End

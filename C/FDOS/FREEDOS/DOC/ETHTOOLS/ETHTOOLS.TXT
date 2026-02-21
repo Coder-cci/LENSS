@@ -1,0 +1,357 @@
+
+   The programs contained in this archive and described further down
+   in this text  were all  written  from scratch  by JÅrgen Hoffmann
+   using BORLAND C++ Version 3.1  during the last weeks  of the year
+   2009. They are licensed under the EUPL V.1.1  and offered  to the
+   public free of charge.  The english text  of this european public
+   licence is included  in this archive.  Other,  equally valid ver-
+   sions,  together with some useful explanations for non-lawers are
+   available in all official languages of the european union and can
+   be downloaded from here: http://ec.europa.eu/idabc/eupl.
+
+   As the programs are free, the author doesn't accept any responsi-
+   bility beyond what can reasonably be expected from any other kind
+   of gift as well.  Even though the programs were thoroughly tested
+   it  cannot be  excluded,  that undiscoverd  errors  still  arise.
+   Should you find such a one,  feel free to inform the author about
+   it using the e-mail address shown at the end of this document.
+
+   All the programs in this package, except ETHSHOW, require an eth-
+   ernet card (of course)  and a packet driver  which must be loaded
+   before the program is started, but no further configuration. They
+   will automatically scan  for the interrupt of this driver  in the
+   usual range of 0X60 to 0X80  but this can be overridden by the /I
+   command line switch.
+
+
+
+
+ETHWHO
+
+   Is a program that tries to generate a who-is-who of your ethernet
+   LAN (with bus-topology).  It lists in tabular form the source and
+   destination  ethernet  adresses  of the  packets  passing  by and
+   counts who is sending whom how many packets (or bytes).  The con-
+   tent of this table  is optionally exported into  a csv-file (cha-
+   racter separated value) from where it can be further processed in
+   what ever way, e.g. be imported into an excel table.
+
+The correct syntax is:
+
+   ethwho [ options ] [ ethernet_address ... ]
+
+   valid options:
+     /I<int> define packet driver interrupt  (default: automatic)
+     /T<num> define table size               (default: 9)
+     /F[fil] write results to CSV-file "fil" (default: .\ETHWHO.CSV)
+     /C<chr> use <chr> as field separator    (default: ",")
+     /B      count transmitted bytes         (default: count packets)
+     /h /?   print this help text
+
+   optional ethernet_address(es) preset the address table with
+   defined values and cause them to appear first in the display
+
+
+
+
+ETHWHAT
+
+   Is a program that watches your  (bus topology) ethernet and tries
+   to figure out what game they are playing. It analyzes the packets
+   passing by, according to frame-type and protocol used (IP,IPX,..)
+   and  displays  statistics  about it.  In  addition,  if it  finds
+   IP-traffic,  it tries to guess the basic configuration parameters
+   from the found data.
+
+The correct syntax is:
+
+   ethwhat [ options ]
+
+   valid options:
+     /I<int> define packet driver interrupt  (default: automatic)
+     /h /?   print this help text
+
+
+
+
+WWWATCH
+
+   This program watches the traffic on the ethernet  and lists every
+   HTTP request from eather a distinct  or any computer on the local
+   LAN, sent to a server "out there" in the WWW.  If you ever wonde-
+   red what kind  of files  or data your  computer fetches  from the
+   internet, this program may help you to find the anwer.
+
+The correct syntax is:
+
+   wwwatch [ options ] <ip-address>/<mask-length>
+
+         <ip-address>  may denote a single host  or an entire net.
+         <mask-length> is the number of  "1"-bits  in the netmask.
+         example:      host: 192.168.5.25/24   net: 192.168.5.0/24
+
+   valid options:
+     /I<int> define packet driver interrupt  (default: automatic)
+     /D      show DNS-replies too            (default: only HTTP)
+     /T      truncate output to screen width
+     /Z<n>   allocate 16(n=4) or 32(n=5) packet buffers (default: 8)
+     /H /?   print this help text
+
+
+
+
+ETHSEND
+
+   Is a program  that sends a single raw ethernet packet  out to the
+   LAN.  As such,  it is not terribly useful for everday  (network-)
+   life,  but for experimental and testing purposes  it can be quite
+   handy.  It helped  a lot  in writing  the other programs  of this
+   package.
+
+The correct syntax is:
+
+   ethsend [ options ] [ data ... ]
+
+   valid options:
+     /I<int> define packet driver interrupt  (default: automatic)
+     /D<dst> define destination address      (default: broadcast)
+     /S<dst> define source address           (default: own address)
+     /T<typ> define type (hex)               (default: 88B5)
+     /L<len> define length (decimal) or /L0: calculate automatically
+     /V      verbose
+     /h /?   print this help text
+
+     (Payload-)Data may be piped-in via stdin or specified as argument
+     As argument it may be ASCII or HEX.  (e.g. text\Hf7b302\Axyz)
+           \H: switches to hex-mode
+           \A: switches to ascii-mode (the default)
+
+
+
+
+ETHDUMP
+
+   Is just another  packet sniffer.  This isn't terribly innovative,
+   but it was a pre-requisite for writing the other programs.  As it
+   therefore had  to be done anyway,  why not give it a decent user-
+   interface and turn it into something useful?
+
+   It basically duplicates the functionality of the program ETHCAPT,
+   written by Yusuf Motiwala,  many years ago.  However it allows to
+   display the data already while recording, with two levels of ver-
+   bosity  (headers only or full data as raw hex dump).  In addition
+   it has some  filtering capabilities  which its predecessor hasn't
+   got.  It can optionally write the captured data  to a binary file
+   in the same format as ETHCAPT would do, so it can later be visua-
+   lized by ETHVIEW (also by Yusuf) or by ETHSHOW (see below).
+
+The correct syntax is:
+
+   ethdump [ options ]
+
+   valid options:
+     /I<int> define packet driver interrupt  (default: automatic)
+     /A<adr> only packets with source OR destination equal to <adr>
+     /D<dst> only packets with destination equal to <dst>
+     /S<src> only packets with source equal to <src>
+             If /S<src> and /D<dst> are both specified:
+             only packets from <src> to <dst> OR vice versa
+     /N      (negate) all packets BUT those specified by /A /D /S
+     /T[+|-]<typ>  only pakets [(+)above|(-)below or] equal <typ>
+     /P<off>:<pat> only packets matching pattern <pat> at offset <off>
+             <pat> is a string of at most 16 hexadecimal digits
+             <off> (22 or 0x16) counts from begin of ethernet frame
+     /F[fil] write data to file "fil" (default: .\ETHDUMP.DMP)
+             file format is compatible with ETHVIEW and ETHSHOW
+     /B      (brief) show headers only
+     /Z<n>   allocate 16(n=4) or 32(n=5) packet buffers (default: 8)
+     /H /?   print this help text
+
+
+
+
+ETHWATCH
+
+   Is basically  a stripped-down  version  of ETHDUMP  with a  fixed
+   built-in filter  to capture only  those ethernet_II frames,  that
+   carry  IP packets  where eather  the source-  or the destination-
+   (IP-)address is outside the local LAN and the other one is inside.
+   In other words:  it records everything that comes from or goes to
+   the internet, ignoring local traffic. It can also write this data
+   to a binary file,  in the same format as ETHCAPT or ETHDUMP would
+   do.
+
+The correct syntax is:
+
+   ethwatch [ options ] <ip-address>/<mask-length>
+
+         <ip-address>  may denote a single host  or an entire net.
+         <mask-length> is the number of  "1"-bits  in the netmask.
+         example:      host: 192.168.5.25/24   net: 192.168.5.0/24
+
+   valid options:
+     /I<int> define packet driver interrupt  (default: automatic)
+     /F[fil] write data to file "fil" (default: .\ETHWATCH.DMP)
+             file format is compatible with ETHVIEW and ETHSHOW
+     /Q      don't show headers while capturing
+     /W      ignore traffic to or from TCP port 80 (WWW)
+     /Z<n>   allocate 16(n=4) or 32(n=5) packet buffers (default: 8)
+     /H /?   print this help text
+
+
+
+
+ETHSHOW
+
+   Is a program to visualize the data that were captured by ETHDUMP,
+   ETHCAPT or ETHWATCH.  As such,  it replaces  the program ETHVIEW,
+   written by Yusuf Motiwala.  It offers however some more features.
+   One can browse through the files, scroll forward and backward and
+   there are  some tiny built-in tools  that help in  dissecting the
+   data. Furthermore, it can invoke ETHDUMP (or ETHCAPT or ETHWATCH)
+   to capture new data  and thus can be used  as a handy neat little
+   protocol analyzer.
+
+   Of course it cannot compare with commercial products nor with the
+   ethereal/wireshark project.  But it's free,  runs under  (MS-)DOS
+   and with little less than 43KB program size it easily fits on any
+   disquette.  It's basic design philosophy is not to attempt to re-
+   place a good book on networking protocols or even your own brain,
+   but to assist you as much as possible in inspecting the data that
+   passed over the wire.
+
+The correct syntax is:
+
+   ethshow [ options ] [ filename [ > filename ] ]
+
+   valid options:
+     /C[prg] define alternate capturing program instead of ETHDUMP
+             if [prg] is not given, ETHCAPT is assumed
+     /O<arg> additional arguments for [prg]
+             example: "/Cethwatch.exe/f /O192.168.5.0/24"
+     /W<fil> define path and name of workfile for capturing
+             current default: .\ETHSHOW.DMP
+     /I<int> /A<adr> /D<dst> /S<src> /T<typ> /P<off>:<pat>
+     /N  and /Z<n> are just passed through to ETHDUMP
+             and have no effect if /C is also given
+     /H /?   print this help text
+
+     The environment variable ETHSHOWTMP can be used to set a new
+     default workfile (which may still be overridden by /W<fil>)
+
+   Being the only interactive  program of this package,  ETHSHOW de-
+   serves some further explanation.  When invoked with the name of a
+   file as argument,  it assumes  that this files  contains ethernet
+   data records as ETHDUMP, ETHCAPT or ETHWATCH would write them and
+   immediately displays the first record of this file.  This display
+   is divided into four sections.
+
+   The uppermost part shows some basic information about the current
+   record (ethernet frame type,  network and transport protocol,  as
+   far as it could identify them).  The next part shows the complete
+   header data in hexadecimal form.  Below this, the payload data of
+   the packet is displayed in both,  hexadecimal and ASCII form  and
+   at the bottom of the screen, context sensitive help is given.
+
+   By means of the <PgUp> and <PgDown> keys it is possible to scroll
+   forward and backward to the next  or previous record.  <Home> and
+   <End> directly jump to the first and last records and <Ctrl/PgUP>
+   and <Ctrl/PgDown> allow  to scoll backward  and forward in larger
+   steps.
+
+   The <F2> key allows to define a search pattern. It opens a dialog
+   offering several context  dependent search options.  Most of them
+   allow to search for more records, that are similar to the current
+   one in some aspect.  Answering that dialog doesn't have a visible
+   effect though, as it only defines the search criteria. The actual
+   search only begins after hitting eather the <F3> (search forward)
+   or <F4>  (search backward)  keys.  If the  <F3> or <F4>  keys are
+   pressed without prior definition of a search criterion or if this
+   dialog was abandoned  by the <ESC> key,  then a default criterion
+   is in effect.  This default  search criterion  is the next record
+   with a non-zero  ethernet type,  which can be useful  to skip the
+   dummy records generated by ETHDUMP to document lost packets.
+
+   The  <cursor right>  and  <cursor left> keys  cause a part of the
+   header data (the second part of the screen) to be highlighted and
+   an a short text to be displayed, explainig the meaning of the re-
+   spective header field.
+
+   Likewise <Ctrl/Right>, <Ctrl/Left>, <Ctrl/Up> and <Ctrl/Down> can
+   be used to move  the data cursor around.  This is simply one byte
+   of the payload data region  which is highlighted  and may as such
+   not appear very useful, but it may help to locate a distinct byte
+   and is certainly better than a screen full of fingerprints.
+
+   Pressing one of the digits '1' to '9'  extends the data cursor to
+   up to nine bytes.  If '0' is pressed, then ETHSHOW assumes,  that
+   the data cursor is currently placed  in a data field that is ter-
+   minated by a zero-byte (C-style) and it automatically extends the
+   highlighted part up to this end.  A '#' causes it to assume, that
+   the data cursor sits on a byte that holds the size of the immedi-
+   ately following  data field (PASCAL-style)  and also  extends the
+   highlighted part accordingly.
+
+   Pressing one of the letters 'b', 'd' or 'o' causes that highligh-
+   ted part to be interpreted as binary, decimal or octal number and
+   displayes it in the line between the header and the data section.
+   Note that case makes  a difference.  Lower case ("small") letters
+   cause  the highlighted part  to be interpreted  as little  endian
+   numbers, while upper case ("big") letters imply big endianess. An
+   'i' causes the marked data  to be interpreted as internet address
+   and displayed in the common dotted decimal representation while a
+   'n' causes  the data to  be interpreted as  a netbios name.  Note
+   that this feature is just a decoding aid and ETHSHOW has no means
+   to verify the data. It's up to the user to apply it carefully.
+
+   Should the  ethernet packet  hold more payload  data than  can be
+   displayed on the screen,  then the (unshifted)  <cursor down> and
+   <cursor up> keys can be used to scroll.
+
+   The <F5> key allows to open another data file. It presents a file
+   dialog showing data files and directories marked with letters.  A
+   letter corresponding to a file opens that file, a letter denoting
+   a directory changes to that directory.
+
+   The <F1> key causes a new capturing run.  By default this is done
+   by invoking the program ETHDUMP which must be found in the search
+   path. It will be instructed to write its data to the workfile and
+   this workfile will be opend as soon as the capturing is complete.
+   If  this workfile  already exists,  it may contain  valuable data
+   which would be overwritten by the new run.  Therefore the user is
+   given the chance to rename the existing workfile before a new one
+   is generated.
+
+   The workfile itself  has the name  ETHSHOW.DMP  and is written to
+   the current directory by default.  This default can be overridden
+   in two ways:  by the /W switch  and by the ETHSHOWTMP environment
+   variable, where the /W will take precedence over the variable. At
+   the same time this workfile defines the extension that is assumed
+   for all files holding ethernet data. So it is ".DMP" by default.
+
+   If ETHSHOW is invoked with the /C switch (without any further ar-
+   guments)  then the program  ETHCAPT  (by Yusuf Motiwala)  will be
+   used for capturing,  instead of ETHDUMP  which of course  must be
+   found via the search path in this case.  If the /C switch is used
+   with  arguments,  then theese arguments  must denote  a capturing
+   program to be used and they must be arranged in such a way,  that
+   ETHSHOW can derive how to call that program.  Such an alternative
+   capturing program must of course be able  to write data to a file
+   in the same format as  ETHDUMP and ETHCAPT  would do  and it must
+   take  the name of this file  as a command line argument.  ETHSHOW
+   will take the argument  of the /C switch  and append  the working
+   file name to it. Should the /O switch be also specified, then its
+   argument will also be appended but after the filename and the re-
+   sulting line will be used to call the program.
+
+   If ETHSHOW detects that its stdout is not connected to the termi-
+   nal,  than it automatically switches to batch mode.  In this mode
+   it reads the entire input file  and writes the content to the re-
+   directed stdout in a format similar to the one used in interacti-
+   ve mode.  Typically stdout  will be re-directed to a file  but it
+   can also be piped into another program, e.g. more.
+
+
+
+
+   JÅrgen Hoffmann     (2009)     j_hoff@hrz1.hrz.tu-darmstadt.de

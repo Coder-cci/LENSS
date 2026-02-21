@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       SBEMU
+Description: êmulation de vieux Sound Blaster pour DOS
+Summary:     êmulez Sound Blaster et OPL3 sous DOS pur au moyen de cartes sons modernes (intÇgrÇes ou en extension) fondÇes sur PCI.
+Keywords:    pilote, son, Çmulateur, audio
+End

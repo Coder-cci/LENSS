@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       Tree
+Description: Zeigt Ordnerstruktur eines Laufwerks/Pfads grafisch an.
+Summary:     Zeigt die Ordnerstruktur eines Laufwerks oder Pfads grafisch an. Untersttzung fr Nachrichtenkataloge (verschiedene Sprachen) mit cats, kann sowohl fr Windows NT/9x als auch fr DOS kompiliert werden.
+Keywords:    tree, FreeDOS, DOS, Win32
+End

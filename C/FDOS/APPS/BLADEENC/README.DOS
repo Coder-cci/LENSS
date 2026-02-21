@@ -1,0 +1,31 @@
+DOS version of Bladeenc
+========================
+
+You need Dr-DOS, FreeDOS, Datalight ROM-DOS, PTS-DOS, MultiuserDOS
+or another DOS compatible operating system!
+
+FreeDOS <www.freedos.org>
+Dr-DOS  <www.drdos.org>
+for other DOSes look at <www.opus.co.tt/dave/>
+
+------------------------
+
+The neccessary alterations required in order to port BladeEnc
+to DOS were made by Matt Craven, 20/09/99!!
+
+email: matt@craven4.freeserve.co.uk
+web  : http://come.to/hedgehog-software/
+
+------------------------
+
+Compiled 0.94.1: Florian Xaver 2001
+florianx@drdos.org
+www.drdos.org www.seal.de.vu
+
+On Dr-DOS and Datalight ROM-DOS you can delete CWSDPMI.* because
+a DPMI server is included!
+
+I used UPX to compress the exe-file
+and InfoZIP (instead pkzip)!
+
+Bladeenc homepage: http://bladeenc.mp3.no/

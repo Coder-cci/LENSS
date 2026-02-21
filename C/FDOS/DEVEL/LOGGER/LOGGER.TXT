@@ -1,0 +1,221 @@
+*******************************************************************************
+
+                               L O G G E R
+
+                    DOS boot and message logging system
+
+                              Version  1.00
+
+-------------------------------------------------------------------------------
+
+Logger is a general console message logging. The executable functions as both
+a device driver to be loaded in the system config file and an interface program
+to communicate and control the memory resident driver. If you do not load the
+device driver in your system config, you can use the DEVLOAD program to load it
+at any time.
+
+It will record text to a log in memory from basic command-line programs that
+output messages to the display. The log is not automatically written to disk or
+stored permanently. Optionally, the interface program can be used to write the
+log to disk in a couple file formats to aid in debugging or other purposes.
+
+WARNING: The dual purpose nature of the binary executable makes it incompatible
+with executable compression programs such as UPX.
+
+The dual purpose binary is not overly large. However sometimes space is very
+precious and saving a couple bytes may be important, like on a boot floppy. If
+you need to save a couple kilobytes of space, there is a "driver only" version
+provided. There is no difference in functionality when the LOGGER.SYS version
+of the driver is loaded. It simply does not contain the interface portion
+and can be UPX compressed. Making it roughly 25% the size of the dual purpose
+binary. To interact with the driver, you will still use the main LOGGER.COM
+program.
+
+For developers, there are also a couple very simple programs provided in the
+DEVEL directory. They demonstrate locating and communicating with the driver's
+API.
+
+*******************************************************************************
+
+What is included with LOGGER?
+
+LOGGER.COM	A dual mode binary that functions as a device driver and as an
+		interface program to control the driver.
+
+LOG2ANSI.COM	A simple auxiliary tool to output the log as text using ANSI
+		escape sequences and color information.
+
+LOG2HTML.COM	A simple auxiliary tool to output the log as HTML/CSS text.
+
+*******************************************************************************
+
+Developer related files.
+
+LOGGER.SYS	A single mode device driver only version of logger which is
+		UPX compressible and provides the same functionality as the
+		driver portion of dual mode LOGGER.COM binary. It is located
+		under the development directory.
+
+API Reference	Documentation for developers that wish to communicate with the
+		LOGGER device driver.
+
+API Examples	Several small programs that demonstrate all of the functionality
+		provided by the LOGGER API.
+
+*******************************************************************************
+
+When loading the driver from the system CONFIG file, the following options are
+supported:
+
+DEVICEHIGH=LOGGER.COM  [size] [COLOR | MONO] [XMS | UMB]
+
+or
+
+DEVICEHIGH=LOGGER.SYS  [size] [COLOR | MONO] [XMS | UMB]
+
+	XMS		Try XMS for log data storage.
+	UMB		Try upper memory for log storage.
+
+	COLOR		Record color attributes associated with log text.
+	MONO		Only record log text (doubles log capacity).
+
+	size		Amount of memory to allocate for log in kilobytes from
+			1 to 65535 (Roughly, 1Kb to 64Mb).
+
+Most options only require their first letter, for example X is short XMS. All
+parameters must be separated by one or more SPACE, COMMA or SEMI-COLON
+characters.
+
+The placement of the XMS and UMB options is very important. The attempt to
+allocate a buffer occurs when one of those options is encountered and uses
+the current settings. When no options are provided, the driver will default to:
+
+256 COLOR XMS 16 MONO UMB
+
+This will cause the driver to first try to allocate a 256K XMS buffer using
+color capture mode. If that does not succeed, it will continue with next series
+of options.
+
+The number of pages that can be stored per KB can very widely based on the
+text being logged. In monochrome mode, it could range from about 0.5 to 512
+pages. Generally, you can expect about 1 page per KB.
+
+Logging to UMB memory will increase the drivers memory footprint by roughly 100
+bytes.
+
+When logging to UMB, the driver will attempt to allocate memory using different
+methods. First, it will attempt to create the LOG storage buffer using DOS
+functions for compatibility with the system's CONFIG setting "DOS=UMB". If this
+does not succeed, it will try using the extended memory driver to directly
+allocate buffer space.
+
+EXAMPLES:
+
+DEVICEHIGH=C:\DOS\LOGGER.COM
+DEVICEHIGH=C:\DOS\LOGGER.COM C,2048,X; 256,X; 128,M,X; 64,C,U; M,16,U
+DEVICEHIGH=C:\DOS\LOGGER.COM COLOR 32 XMS MONO 16 UMB
+DEVICEHIGH=C:\DOS\LOGGER.COM color 32 UMB, mono 16 UMB
+DEVICE=C:\DOS\LOGGER.COM m,64 xms
+
+(Although the comma and semi-colon function as parameter separators, they can
+be considered decorations that can help with reading and editing a long series
+of command line options.)
+
+-------------------------------------------------------------------------------
+
+After the driver is loaded in the system config, interaction with the log uses
+the same binary. The following options are supported:
+
+LOGGER.COM [ON | OFF] [QUITE] [CLEAR] [PRINT] [VIEW] [SNAPSHOT] [THRU]
+ [MESSAGE text]
+
+Options to override or change the state of logging:
+
+	ON		Force logging on when finished.
+	OFF		Leave logging disabled when finished.
+
+Options that leave logging disabled unless overridden:
+
+	CLEAR		Empty the log.
+	PRINT		Output the log text to STDOUT.
+
+Options that will return logging to its previous state:
+
+	HELP or ?	Display this help text.
+	INFORMATION	Display some status information about the driver.
+	QUIET		Do not display error when logging driver is not loaded.
+
+	VIEW		View the log. (default)
+	MESSAGE text	Add the remaining command line as text to the log.
+	SNAPSHOT	Store a snapshot of the screen in the log.
+	THRU		Log and pass along any redirected standard input text.
+
+Options must be separated by one or more SPACE, COMMA or SEMI-COLON characters.
+Most options only require their first letter, for example C is short CLEAR. The
+exceptions are ON, OFF and HELP which must be specified in their entirety.
+
+LOGGER always disables logging when executed. Based on the options provided on
+the command line, logging may or may not be enabled when the program finishes
+interfacing with the device driver. The state of logging when finished can be
+overriden by using the OFF and ON options.
+
+Any redirected text waiting in the standard input buffer will automatically be
+added to the Log. If there were not options specified, the interface program
+will exit after appending the Log.
+
+If no options are provided and there is no redirected text waiting, the default
+behaviour is to VIEW the log.
+
+While viewing the log, the following keystrokes are supported:
+
+	ESACPE		Exit. (Also, ENTER/RETURN will exit)
+	ARROW KEYS	General navigation.
+	PAGE UP/DOWN	Scroll Up or Down a page at a time.
+	HOME		Move to beginning.
+	END		Page Down to the end.
+	CTRL+LEFT	Move to the leftmost column.
+	CTRL+RIGHT	Move to the rightmost column of the longest line on
+			the display.
+
+The viewer does not automatically wrap text that exceeds the display width of
+the screen. In video modes that are not supported by advanced capturing, the
+logged text can exceed the screen width. Regardless of the capture method, any
+text that is added through I/O redirection or the MESSAGE option can also
+exceed the screen width.
+
+The RIGHT arrow key will only shift the display right when there is a line
+displayed on the screen that contains additional information beyond the width
+of the display.
+
+*******************************************************************************
+
+BSD 3-Clause License
+
+Copyright (c) 2023, Jerome Shidel
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

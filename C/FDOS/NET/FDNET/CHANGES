@@ -1,0 +1,16 @@
+2021-11-27
+
+    Renamed ChangeLog to Changes to prevent need for LFN file archive in package.
+
+2021-11-13
+
+    Improved error handling
+    Added NLS support and translations
+    Added change log
+    Added license file.
+    Re-organized directory layout.
+    updated to newest version MTCP
+    With Rugulo's permission, relaxed the license for FDNET itself to GPLv1+.
+
+2021-11-11 Prior versions did not include a change log.
+

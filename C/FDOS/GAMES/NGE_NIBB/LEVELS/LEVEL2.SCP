@@ -1,0 +1,119 @@
+Level.Title Level_2_-The_Passage-
+Level.BlockNum 9
+Level.FoodNum 6
+Worm.Start 180 60 15
+
+Block 0
+
+  Width 95
+  Height 15
+  X 30
+  Y 37
+
+Block 1
+
+  Width 95
+  Height 15
+  X 113
+  Y 134
+
+Block 2
+
+  Width 95
+  Height 15
+  X 113
+  Y 92
+
+Block 3
+
+  Width 15
+  Height 95
+  X 275
+  Y 23
+
+Block 4
+
+  Width 8
+  Height 200
+  X 0
+  Y 0
+
+Block 5
+
+  Width 320
+  Height 8
+  X 0
+  Y 0
+
+Block 6
+
+  Width 8
+  Height 200
+  X 312
+  Y 0
+
+Block 7
+
+  Width 320
+  Height 8
+  X 0
+  Y 192
+
+Block 8
+
+  Width 91
+  Height 12
+  X 191
+  Y 179
+
+Food 0
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 73
+  Y 20
+
+Food 1
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 161
+  Y 119
+
+Food 2
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 300
+  Y 82
+
+Food 3
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 28
+  Y 160
+
+Food 4
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 221
+  Y 30
+
+Food 5
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 297
+  Y 170
+
+
+
+

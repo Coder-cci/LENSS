@@ -1,0 +1,66 @@
+; ษอออออออออออออออออออออออออออออออออออออออออออออออป
+; บ  Script-File fr MakHiSET			  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ  Chipsatz: UMC 82C481A			  บ
+; บ  getestet auf 486er				  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ  Blendet im Bereich C800h:0 - EFFFh:0 RAM ein บ
+; บ  und initialisiert dieses mit 00h.		  บ
+; บ  (Einstellung fr VGA-Karte bei C000h-C7FFh)  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ		(C) 1993 by JVP			  บ
+; ศอออออออออออออออออออออออออออออออออออออออออออออออผ
+
+; Fr Startmeldung des Treibers
+MESSAGE		=	UMCAUTO, UMBs C800h-EFFFh
+
+; NMI abschalten bis alles fertig ist
+NMI		=	OFF
+
+; Werte fr Index- und Datenport
+INDEXPORT	=	22h		; entspricht default
+DATAPORT	=	24h		; entspricht default
+
+; Segments E000h - EFFFh Shadow RAM & cache enable, write protect disable
+INDEX		=	9Bh
+DATA		=	00110xxxb
+;			ณณณณภ0=E000h write protect disable
+;			ณณณภ1=E000h Shadow RAM enabale
+;			ณณภ1=E000h cacheable
+;			ภมฤ00=no memory remapping
+
+; Segments C800h - DFFFh cache enable
+INDEX		=	9Ch
+DATA		=	11111100b
+;			ณณณณณณณภC000h	\
+;			ณณณณณณภC400h	 \
+;			ณณณณณภC800h	  \
+;			ณณณณภCC00h	   \ 0=disable
+;			ณณณภD000h	   / 1=enable
+;			ณณภD400h	  /
+;			ณภD800h		 /
+;			ภDC00h		/
+
+; Segments C800h - DFFFh Shadow RAM enable
+INDEX		=	9Dh
+DATA		=	11111100b	; Bit-Zuordnung wie Register 9Ch
+
+; Segments C800h - DFFFh write protect disable
+INDEX		=	9Eh
+DATA		=	00000011b
+;			ณณณณณณณภC000h	\
+;			ณณณณณณภC400h	 \
+;			ณณณณณภC800h	  \
+;			ณณณณภCC00h	   \ 0=disable
+;			ณณณภD000h	   / 1=enable
+;			ณณภD400h	  /
+;			ณภD800h		 /
+;			ภDC00h		/
+
+; Segmente C800h - EFFFh einschlieแlich mit 00h initialisieren
+RAMINIT		=	C800h - EFFFh
+
+; fertig, NMI wieder zulassen
+NMI		=	ON
+
+; Quelle: c't 3/93 S.149

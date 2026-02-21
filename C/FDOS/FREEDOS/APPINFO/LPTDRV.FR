@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       LPT Driver
+Description: Un outil pour contr“ler les appareils connect‚s … LPT manuellement ou en fonction du temps
+Keywords:    LPT
+End

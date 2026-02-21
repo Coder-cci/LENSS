@@ -1,0 +1,15 @@
+Begin3
+Title:           SBEMU
+Version:         1.0-beta4
+Entered-date:    2024-05-02
+Description:     Legacy sound blaster emulation for DOS
+Summary:         Emulate Sound Blaster and OPL3 in pure DOS using modern PCI-based (onboard and add-in card) sound cards.
+Keywords:        driver, sound, emulator, audio
+Author:          crazii
+Maintained-by:   crazii
+Primary-site:    https://github.com/crazii/SBEMU
+Platforms:       DOS, FreeDOS
+Copying-policy:  GNU General Public License, version 2
+Modified-date:   2025-03-01.0
+Long-file-names: true
+End

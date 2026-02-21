@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       DOSLFN
+Description: API fr lange Dateinamen (LFN).
+Summary:     Stellt die API fr lange Dateinamen (LFN) in einfachem DOS bereit (kein Windows!). Diese Version ben”tigt SHSUCDX fr die CD ROM Untersttzung
+Keywords:    long file name, lfn, lange Dateinamen
+End

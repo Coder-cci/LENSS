@@ -1,0 +1,29 @@
+# this is bolitaire configuration file.
+[bolitaire]
+fullscreen = 1
+color = 24
+status_bar = 1
+mplayer = 1
+background = 1
+bg = blue_angle_swirl.jpg
+custom_drive = 0
+custom_driver_name = 2
+custom_w = 648;
+custom_h = 520;
+
+
+[settings]
+animation = 1
+animation_speed = 20
+ms_deal = 1
+alrand_deal = 0
+
+# some custom driver defines and its int value
+# GFX_AUTODETECT                 0
+# GFX_AUTODETECT_FULLSCREEN      1
+# GFX_AUTODETECT_WINDOWED        2
+
+[player]
+volume = 150
+pan = 128
+media_n = 0

@@ -1,0 +1,12 @@
+Begin3
+Title:          NetHack
+Version:        3.6.7
+Entered-date:   2023-02-16
+Description:    Single player dungeon exploration game
+Author:         Stichting Mathematisch Centrum, M. Stephenson
+Primary-site:   http://www.nethack.org/
+Platforms:      DOS, Windows, GNU/Linux, OS/2, Mac, Amiga, Atari
+Copying-policy: NetHack General Public License
+Summary:        A single player dungeon exploration game.
+Modified-date:  2025-03-16.0
+End

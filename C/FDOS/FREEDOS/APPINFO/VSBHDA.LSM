@@ -1,0 +1,14 @@
+Begin3
+Title:          VSBHDA
+Version:        1.5
+Entered-date:   2024-06-08
+Description:    Sound Blaster emulation for DOS.
+Summary:        Sound blaster emulation for HDA (and AC97/SBLive); a fork of crazii's SBEMU. Works with unmodified HDPMI binaries, making it compatible with HX.
+Keywords:       driver, sound, emulator, audio
+Author:         crazii, Japheth
+Maintained-by:  Andreas "Japheth" Grech
+Primary-site:   https://github.com/Baron-von-Riedesel/VSBHDA
+Platforms:      DOS, FreeDOS
+Copying-policy: Open source, see licenses.
+Modified-date:  2025-03-16.0
+End

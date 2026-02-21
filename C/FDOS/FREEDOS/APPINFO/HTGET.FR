@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       HTGET
+Description: T‚l‚charger des fichiers … partir de serveurs HTTP
+Summary:     HTGET est un gestionnaire de fichiers qui r‚cup‚rera des fichiers … partir de serveurs HTTP.
+Keywords:    freedos, htget
+End

@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       picoSNTP
+Description: Client SNTP pour DOS, bas‚ sur picoTCP
+Keywords:    NTP, SNTP
+End

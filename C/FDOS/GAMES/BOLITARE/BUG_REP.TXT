@@ -1,0 +1,98 @@
+
+
+
+         %%%   $$$$  #     @  %%%%%   $$$   #  @@@@   %%%%
+         %  %  $  $  #     @    %    $   $  #  @   @  %
+         %%%   $  $  #     @    %    $$$$$  #  @@@@   %%%
+         %  %  $  $  #     @    %    $   $  #  @ @    %
+         %%%   $$$$  ####  @    %    $   $  #  @  @   %%%%
+                   
+               00) 1 1 1--     00; |-- 00\ 000 00; ---  
+               0<  1 1 1 -1    0-  |-  00/ 0 0 0-   |
+               00) 111 1--1    0 \ |-- |   000 0 \  |
+
+Report bugs to yzonesoft@yahoo.com
+Before reorting BUGS lease check you are using the latest release
+at http://yzonesoft.buildtolearn.net  or  http://www.yzonesoft.tk
+
+
+BUG 1->  Dirty mouse images                      : cleared     : Reported by me : less
+
+BUG 2->  Dialog move wrong blit for form1        : cleared     : Reported by me : more
+ 
+BUG 3->  Selection form does not show again 
+         when OK is pressed with no value in     : cleared     : Reported by me : more
+         text box
+
+BUG 4->  When game completes some place of       
+         the king(small) button is wrongly       : cleared     : Reported by me : more
+         cleared with button is wrongly cleared 
+         with green colour 
+
+BUG 5->  Menu related dirty images on the screen : cleared     : Reported by me : more        
+
+BUG 6->  Time is cleared when starting a new game: cleared     : Reported by me : more
+
+BUG 7->  transperent colours on the card J,Q, K  : cleared     : Reported by me : more      
+         of heart and diamond. 
+
+BUG 8-> when starting a new game and mouse is    : cleared     : Reported by me : less
+        on any of the menu, then a part of the 
+        button is left on the screen
+
+BUG 9-> When a button in the dialog is pressed   : not cleared : Reported by me : very less
+        with part of a button lying on the
+        task bar, then task bar is included in
+        the button
+
+BUG 10-> When a card is right clicked with the   : cleared     : Reported by me : less 
+         bottom card of that pile selected, then
+         when releasing the right click some 
+         original image of the card is replaced 
+         on the selected card 
+
+BUG 11-> When running the program first time     : cleared     : Reported by me : more
+         without setastat.fyl. then after losing
+         /winning first game the streak is not 
+         updated 
+
+BUG 12-> When moving to freecell(right of king)  : cleared     : Reported by me : more
+         and there is no card behind the one 
+         which is going to be moved to freecell
+         then a green image is left on the 
+         mouse_bg  
+
+BUG 13-> When a complete column is going to be   : cleared     : Reported by me : more
+         moved to freecell(right to king) and
+         the card selected is in that column
+         then the mouse image is blit wrongly
+
+BUG 14-> In free cell, when a card is clicked by : Not cleared : Reported by me : less
+         having a portion of the mouse on the 
+         next cell which has been previously 
+         clicked, then there is a small mouse 
+         blit on the near by card
+
+BUG 15-> A problem in the auto sweep loop.       : cleared     : Reported by me : more
+         Easy to fix, little lazy
+
+BUG 16-> A problem in moving bulk cards          : cleared     : Reported by me : more(most)
+
+BUG 17-> When quiting bolitaire using Exit       : cleared     : Reported by Inphernic : more
+         from menu with Incomplete game, then
+         it is consider as two loss. 
+
+BUG 18-> wrong calculation of total cards that   : cleared     : Reported by me : more
+         can be moved 
+
+BUG 19-> the number of cards that can be placed  : cleared     : Reported by me : more
+         down over flows.
+
+BUG 20-> start a new game then open any dialog   : cleared     : Reported by me : more 
+         and close it, now you will not be able 
+         to select the last active form/card
+
+Severity :   less -> just a simple problem and can be corrected or hided during 
+                     the program execution
+             more -> a image is left on the screen permenently or program hangs  
+

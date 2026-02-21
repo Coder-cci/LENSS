@@ -1,0 +1,70 @@
+
+
+                       DWOL, a tiny WOL utility for DOS
+                       Copyright (C) 2017 Mateusz Viste
+
+
+DWOL is a tiny tool that computes and sends "wake-on-lan" packets. Wake-On-LAN
+(WOL) is an Ethernet standard that allows a computer to be turned on by a
+network message. The WOL technology has been designed by AMD back in 1995, and
+widely implemented inside many Ethernet chips and mainboards since then.
+DWOL is designed with two goals: being tiny (no bigger than a single floppy
+disk sector, that is 512 bytes), yet still performing proper input validation
+and providing the user with clear, friendly messages.
+
+Project's homepage: http://dwol.sourceforge.net
+
+Usage syntax: DWOL etheraddr
+
+Example: DWOL 54:52:00:a0:67:7c
+
+The MAC address is case-insensitive.
+
+DWOL exits with code 0 on success. If an error occurs, it exits with an exit
+code of 1.
+
+DWOL requires an Ethernet packet driver. The packet driver is auto-detected by
+scanning the interrupt range 60h...80h. DWOL uses the first packet driver that
+it finds.
+
+
+===[ It's no magic ]==========================================================
+
+DWOL is only a packet-sending tool. It won't magically turn on any remote
+computer if said computer is not configured to allow this. DWOL, like any
+other WOL implementation, requires Wake-On-LAN hardware support on the
+destination computer. WOL must also be explicitely enabled, either through
+the computer's BIOS settings or/and through its operating system.
+
+
+===[ Requirements ]===========================================================
+
+DWOL doesn't require much to work, but here we go:
+ * an IBM PC or compatible (8086/8088 CPU or better),
+ * MS-DOS 2.0+ or compatible,
+ * an Ethernet adapter with a packet driver complying to pkt drv spec v1.10+.
+
+
+===[ License ]================================================================
+
+DWOL is distributed under the terms of the MIT License, as listed below.
+
+Copyright (C) 2017 Mateusz Viste
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

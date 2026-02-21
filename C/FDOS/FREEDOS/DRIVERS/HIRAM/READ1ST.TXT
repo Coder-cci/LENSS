@@ -1,0 +1,40 @@
+	ÄÒÄ	 ÄÒÄ   Ò
+	 º	  º    Ğ
+	 º	  º
+	 ÇÄÄÄÄÄÄÄ¶   Ä·   ÄÒÄÄÄ·  ÖÄÄÄÄ·   ÄÒÄÄÄÒÄÄÄ·
+	 º	  º    º    º	  ÖĞÄÄÄÄ¶    º	 º   º
+	 º	  º    º    º	  º	º    º	 º   º
+	ÄĞÄ	 ÄĞÄ  ÄĞÄ  ÄĞÄ	  ÓÄÄÄÄÄĞÄ  ÄĞÄ ÄĞÄ ÄĞÄ  V1.9
+
+		Copyright (C) 1992-1993 by JVP
+
+
+
+HiRAM is a Memory Manager for DOS (MS-DOS 5/6/7/8, DR-DOS 5/6), which uses
+Upper Memory Blocks (UMBs) on 8086, 80286, 80386, 80486 or newer PCs/ATs with
+compatible memory expansion cards or enabled Shadow RAM to free extra
+contiguous RAM blocks above the 620/640 KB memory barrier, to be used by DOS
+devices/drivers/TSRs/programs capable of loading in Upper Memory Area (UMA).
+Read HIRAM.TXT and INFO.TXT for complete details!
+
+Requirements:
+- PC/AT with 8086, 8088, 80286, 80386, 80486 or newer CPUs with Shadow RAM
+supporting addresses between A000h:0 and E000h:FFFFh.
+- MS-DOS 5/6 [+ MS Windows/WfWG 3.1x], MS Windows 95/98/ME [a.k.a. MS-DOS 7/8]
+or DR-DOS 5/6.
+- VGA video card.
+
+Files list:
+- README.1ST	This file.
+- HIRAM19A.ASM	The source (compile with TASM).
+- HiRAM.EXE	The actual memory manager.
+- HIRAM.TXT	Complete documentation.
+- INFO.TXT	Uwe Sieber's documentation, also included with UMBPCI.SYS
+		[English release]:
+		http://www.uwe-sieber.de/files/umbpci_e.zip
+- HiFILES.EXE	Program to load System File Table (FILES) in upper memory.
+- HiLOAD.COM	Program to load TSRs in upper memory with DOS < v5.0.
+- MakHiSET.EXE	Script Compiler for 386/486 Chipsets.
+- MakHiSET.TXT	Documentation for Script Compiler.
+- XMEM.EXE	eXtended MEM.EXE (for 80286 and above).
+- *.SCR		Chipset specific source files for use with MakHiSET.

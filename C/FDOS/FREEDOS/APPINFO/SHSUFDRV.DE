@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       SHSUFDRV
+Description: Treiber fÅr Disketten-/Festplattenimages.
+Summary:     SHSUFDRV ist ein Treiber fÅr Floppy- und Festplattenimages (z.B.: ISO). SHSURDRV kopiert ein Image in den Arbeitsspeicher und/oder erstellt Ramdrives.
+Keywords:    Treiber, driver, floppy, images, hard disk, ram drive
+End

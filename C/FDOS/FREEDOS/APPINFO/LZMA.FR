@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       LZMA Utils
+Description: Fonctionne avec les fichiers compress‚s .lzma
+Summary:     Fonctionne avec les fichiers compress‚s .lzma (diff‚rent de 7-zip)
+Keywords:    lzma
+End

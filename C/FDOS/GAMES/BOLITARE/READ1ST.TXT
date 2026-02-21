@@ -1,0 +1,49 @@
+Bolitaire 0.62a 12th Mar 2005
+-------------------------
+
+WARNING!!!
+Author does not have any responsibilities if what so hapens to your computer because of 
+this program. This program is not protected from any copyrights.
+
+Known Bugs
+-----------
+for bug list and how to report bugs refer common bug report.
+
+
+Blah stuff
+-----------
+There are three easter eggs which can be invoked by pressing F2 at some place, In which one is a different game where all the cards are hidden and you can see the cards when only you move it.       
+
+
+
+Installation :
+---------------
+
+    Windows user simply run the setup file if you download setup file. If you 
+got a zip file then extract it to a folder and run bolitaire.exe. if it asks
+for alleg41.dll download it and extract it to drive:/windows/system.    
+
+
+    To create the boot floppy you need boot_fd_bolitaire.imz and a floppy, 
+then extract these files to a fresh floppy using softwares like WinImage or 
+folppyimage(freeware). Now, boot with that floppy to enjoy freecell.
+
+
+    Dos users unzip the program to a seperate folder,then execute the program 
+from there. you will require mouse(like cute mouse) support for dos. You will
+also need cwsdpmi if you run bolitaire in real mode dos (ie DOS as OS and not
+dos box or command prompt)
+    
+
+    Linux user unzip the program to a seperate folder,then execute bolitaire from
+there. If it asks for liballeg.so.4.1 then download it and copy it to 
+/usr/local/lib or /usr/lib.
+
+
+    BeOS user unzip the program to a seperate folder, then execute bolitaire from
+there. If it asks for liballeg.so.4.1(for BeOS) then download it and copy it to 
+/boot/home/config/lib.     
+
+Note: Use allegro-4.1.18, other versions less than 4.1.18 will not work.
+
+

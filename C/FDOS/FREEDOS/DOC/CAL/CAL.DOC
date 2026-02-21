@@ -1,0 +1,20 @@
+
+CAL.COM   v1.07   08-12-1998   Copyright 1998, Charles Dye
+
+This is a low-fat calendar program.  CAL won't display pretty colors or
+remind you of appointments.  What it will do is generate simple calendars
+for any month or year from 1753 through 2399, accurately and with a decent
+minimum of code.  Output may be redirected.  Only Gregorian (New Style) is
+supported; this is not a port of the Unix cal.
+
+CAL       With no arguments, displays a calendar for the current month.
+          Today's date will be marked with an asterisk.
+
+CAL m/y   Generate a calendar for a specific month.  m is the month,
+          1 to 12.  y is the year, 1753 to 2399.  If it's less than 100,
+          2000 will be added.
+
+CAL y     Generate a calendar for an entire year.  If output is not
+          redirected, CAL will pause after June.
+
+CAL may be distributed freely, with or without source.

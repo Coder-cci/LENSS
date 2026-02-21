@@ -1,0 +1,14 @@
+Begin3
+Title:          mTCP (UPX)
+Version:        2024-10-20 (FreeDOS)
+Entered-date:   2024-10-20
+Description:    A collection of TCP/IP tools
+Summary:        A collection of UPX compressed TCP/IP tools: DHCP, IRC, FTP, Telnet, Netcat, HTGet, Ping, SNTP. This package does not include HTTPServ or Netdrive.
+Keywords:       dos tcp/ip realmode dhcp ftp telnet htget irc ircjr netcat sntp ping opensource 16 bit
+Author:         Michael B. Brutman <mbbrutman _AT_ gmail.com>
+Maintained-by:  Michael B. Brutman <mbbrutman _AT_ gmail.com>
+Original-site:  http://www.brutman.com/mTCP/
+Platforms:      DOS
+Copying-policy: GNU General Public License, Version 3
+Modified-date:  2025-03-16.0
+End

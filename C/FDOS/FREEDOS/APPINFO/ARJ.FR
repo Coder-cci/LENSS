@@ -1,0 +1,5 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       ARJ
+Description: Le gestionnaire d'archives ARJ libre.
+End

@@ -1,0 +1,108 @@
+RSYNC 2.2.5 FOR DOS
+
+
+RELEASE NOTES
+
+
+This is a port of the standard rsync program
+(www.rsync.org) to the DOS operating system. It runs 
+entirely in real mode, making it suitable for embedded 
+and hand-held systems with only an 8086 processor and 640 
+KB RAM.
+
+This rsync is necessarily a sub-set of the full rsync, 
+partly because of memory limitations and partly because 
+of the peculiarities of DOS. For a list of supported 
+options, type "rsync -h" and see the rsync man pages 
+details.
+
+The main differences are:
+- Client only. It cannot be run in deamon mode
+- No support for rsh or ssh. It communicates with 
+  another copy of rsync running in daemon mode using a 
+  TCP/IP network connection
+- File names on the server must be in DOS format (that 
+  is 8.3 characters, UPPER CASE) if they are to be 
+  sync'd correctly
+- File data is not compressed
+
+
+COMPILING RSYNC
+
+To compile you will need a copy of Borland C 3.1. It may work
+with other versions of Broland C, but I have not tried it.
+
+Unzip the archive into an empty directory. There is a makefile
+in the D16 sub directory. You will have to edit the first few
+lines to set it up for your environment:
+
+    RT              = c:\tmp\rsync
+    BCC31           = c:\bcc31
+
+First, change RT to point to the directory where you installed rsync,
+then change BCC31 to point to your Borland compiler.
+
+Build it using Borland make: no other make will do. There are some
+harmless warnings during compilation.
+
+There is a new source file, dossup.c, which contains "bridge" functions
+between DOS and Unix. Most of the code that is left out is identified by
+the NOSHELLORSERVER conditional. Some code specific to DOS may also be
+located by the __BORLANDC__ conditional.
+
+
+USING RSYNC
+
+Unzip the files in the archive, preferably into an empty 
+directory. You will need to install a packet driver for 
+your network adapter. Almost all network cards are 
+supplied with one on the distribution diskette or CD, 
+usually in a directory named PKTDRV. If there isn’t one, 
+a collection of packet drivers is freely available for a 
+wide range of PC Ethernet interfaces from Crynwr 
+(http://www.crynwr.com). If that fails, you can use an 
+ODI driver if you load an ODI to packet converter after 
+the driver. ODIPKT from FTP Software is an example of 
+such a converter.
+
+The TCP/IP network is provided by wattcp 
+(www.wattcp.com). There is a minimum amount of 
+configuration to be done to set it up. You will need to 
+create a file called wattcp.cfg in the same directory as 
+rsync.exe. It should contain at least my_ip and netmask 
+entries. If you are accessing a server that is not on the 
+local net or subnet you will need a gateway entry. If you 
+are addressing the server by name rather than IP address 
+you will need one or more nameservers as well. Here is an 
+example. Only the first two lines are necessary:
+
+wattcp.cfg:
+
+	my_ip=192.168.1.100
+	netmask=255.255.255.0
+	gateway=192.168.1.1
+	nameserver=213.120.62.100
+	nameserver=213.120.62.101
+
+Using rsync on DOS is just like using it for other 
+operating systems. For example, to sync all the files in 
+local directory \tmp\sync to module data_files on server 
+with IP address 192.168.1.1, type:
+
+        rsync -rv /tmp/sync 192.168.1.1::data_files/
+
+To sync files in the other direction, i.e. from the 
+server to the local disk, type
+
+        rsync -rv 192.168.1.1::data_files/ /tmp/sync
+
+Note that in specifying the pathname on the DOS file 
+system the slashes go the "Unix way". 
+
+
+
+
+
+Chris Simmonds
+2net Ltd
+February 2003

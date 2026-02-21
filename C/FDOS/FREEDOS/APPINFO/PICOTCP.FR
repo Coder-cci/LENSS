@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       picoTCP
+Description: Pile de r‚seau picoTCP et outils
+Summary:     Pile de r‚seau picoTCP (librairie et outils de configuration)
+End

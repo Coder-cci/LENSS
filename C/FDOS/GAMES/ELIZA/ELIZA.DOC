@@ -1,0 +1,22 @@
+                               Eliza V1.01
+                           writen by Michael Day
+                           as of 26 December 1988
+                   Released to the public domain by author
+
+If you've been around the computer business long enough you've heard 
+about Eliza, an early limited attempt at AI (or was that AS - Artificial 
+Stupidity). This version is a translated from an old CPM Basic version of 
+the program. This came about as the result of a discussion about AI on CIS.
+Eliza can either cure your psychosis or generate new ones depending on how 
+you take it. 
+
+The orginal Basic program that this version of Eliza was derived from is
+included as ELIZA.BAS. The new Turbo Pascal program is provided as 
+ELIZA.PAS. The file RESPONSE.DAT contains the various responses that
+Eliza will generate to the questions asked.
+
+Enjoy!
+
+
+
+

@@ -1,0 +1,97 @@
+lpq1 archiver, Dec. 23, 2007 (C) 2007, Matt Mahoney
+   v2 updated May 6, 2008.
+
+    LICENSE
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation; either version 3 of
+    the License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details at
+    Visit <http://www.gnu.org/copyleft/gpl.html>.
+
+lpq1 is a file compressor and archiver.  Usage:
+
+  lpq1 {a|x|l} archive [[-opt] files...]...
+
+Commands:
+
+  a = create archive and compress named files.
+  x = extract from archive.
+  l = list contents.
+
+Archives are "solid".  You can only create new archives.  You cannot
+modify existing archives.  File names are stored and extracted exactly as
+named when the archive is created, but you have the option to rename them
+during extraction.  Files are never clobbered.
+
+The "a" command creates a new archive and adds the named files.
+Wildcards are permitted if compiled with g++.  Options
+and filenames may be in any order.  Options apply only to filenames
+after the option, and override previous options.  Options are:
+
+  -s = store without compression.
+  -c = compress (default).
+
+For example:
+
+  lpq1 a foo.lpq1 a.txt -s b.txt -c c.txt tmp/d.txt /tmp/e.txt
+
+creates the archive foo.lpq1 with 5 files.  The file b.txt is
+stored without compression.  The other 4 files are compressed.
+
+If any named file does not exist, then it is omitted from the archive
+with a warning and the remaining files are added.  An existing
+archive cannot be overwritten.  There must be at least one filename on
+the command line.
+
+The "x" command extracts the archive contents, creating files exactly
+as named when the archive was created.  Files cannot be overwritten.
+If a file already exists or cannot be created, then it is skipped.
+For example, "tmp/d.txt" would be skipped if either the current
+directory does not have a subdirectory tmp, or tmp is write
+protected, or tmp/d.txt already exists.
+
+If "x" is followed by one or more file names, then the output files
+are renamed in the order they were added to the archive and any remaining
+contents are extracted without renaming.  For example:
+
+  lpq1 x foo.lpq1 x.txt y.txt
+
+would extract a.txt to x.txt and b.txt to y.txt, then extract c.txt,
+tmp/d.txt and /tmp/e.txt.  If the command line has more filenames than
+the archive then the extra arguments are ignored.  Options are not
+allowed.
+
+The "l" (letter l) command lists the contents.  Any extra arguments
+are ignored.
+
+Any other command, or no command, displays a help message.
+
+ARCHIVE FORMAT
+
+  "lPq", 1, [filename {'\0' mode usize csize contents}...]...
+
+The first 4 bytes are "lPq\x01" (1 is the version number).
+
+A file is stored as one or more blocks.  The filename is stored
+only in the first block as a NUL terminated string.  Subsequent
+blocks start with a 0.
+
+The mode is 's' if the block is stored and 'c' if compressed.
+
+usize = uncompressed size as a 4 byte big-endian number (MSB first).
+
+csize = compressed size as a 4 byte big-endian number.
+
+The contents is copied from the file itself if mode is 's' or the
+compressed contents otherwise.  Its length is exactly csize bytes.
+
+Files are compressed in lpaq1 7 format, which requires 387 MB memory.
+The model state is retained between files.  lpaq1 is a context mixing
+compressor.  See lpaq1.cpp from http://cs.fit.edu/~mmahoney/compression/
+for a detailed description of the algorithm.

@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       choice
+Description: Pr‚senter un choix et attendre
+Summary:     Pr‚senter un choix … l'utilisateur et attendre l'appui d'une touche
+Keywords:    freedos
+End

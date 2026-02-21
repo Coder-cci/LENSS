@@ -1,0 +1,79 @@
+v0.95- bugfix release for the 'too large packet' problem
+
+v0.94- by Przemyslaw Czerpak <druzus@polbox.com>:
+       - checking the real screen size (width and high) for VGA
+       - corrected bug in cursor hide/show: ESC [ ? 25 h/l
+       - added cursor shape codes ESC [ ? n c
+       - added set / restore color palette codes ESC ] R, ESC ] P nnrrggbb
+     - New codes from linux console
+     - even more terminal fixes
+     - support for 80x60, 132x25 and 132x50 video modes (VESA required)
+     - added scrollback support
+     - code cleanup
+     - changed to OpenWatcom (DJGPP and Borland support removed)
+
+v0.93- Major code cleanup
+     - Added -l switch for session logging (sshdos and telnet)
+     - Added -b switch for supporting the Brailab PC adapter
+       for the visually challenged
+     - Added ALT-E key combination to invoke a DOS shell
+     - Major scpdos rewrite (uses scp protocol, thanks to PuTTY)
+
+v0.92- Added -a option for keepalive packet support
+     - Added telnet utility
+     - Added RSA public key authentication
+     - Added ALT-X key combination to terminate a session
+
+v0.91- Added packet compression support (using zlib)
+     - Added support for local printing. Remote host can redirect
+         its output to local printer using proper ANSI codes
+     - Disabling status line enables full 25 lines
+     - Code cleanup
+     - Bugfixes
+
+v0.9 - Code cleanups
+     - SCPDOS can transfer to and from remote machines
+         Thanks to Andrew Roach <aroach@geocities.com>
+     - Added -k switch for external keymap file support
+         Thanks to Shane Wegner <shane@cm.nu>
+     - ISO Latin charset support (please read the "codepage" file)
+         Thanks to Mieczyslaw Nalewaj <nami@polbox.com>
+     - Added -n switch for servers sending only LF without CR
+
+v0.8 - Many terminal emulation fixes
+     - Added xterm-color terminal support (MUST see with a Linux host)
+     - Added -s switch for specifying password
+
+v0.7 - Added -S switch for disabling status line
+     - Smaller bugfixes
+
+v0.6 - Redirecting standard output works properly
+     - Added SCPDOS for remote to local file transfer
+     - Added -v switch for verbose mode. SSHDOS shows less messages
+       by default
+
+v0.5 - SSHDOS now can remotely execute a command without opening
+         an interactive shell (safe rexec).
+         Thanks to Ken Yap <ken_yap@xoommail.com>
+     - CTRL-C handling works in DJGPP version
+         Thanks to Shane Wegner <shane@cm.nu>
+
+v0.4 - Changed options: -p for specifying SSH port number (previously -P)
+			-P to use a non privileged local port
+     - Added -d option to save SSH packets
+     - B&W mode can be forced at compile time (see makefile)
+     - Backspace works in ask_password
+     - Three chances to enter proper password
+     - Added 'linux' terminal emulation
+     - Added DJGPP support
+     - Opened CONTRIB subdirectory. Any codes are welcome here
+
+v0.3 - Added ANSI color handling
+     - Better command line parser
+     - Added -t option for specifying terminal type
+     - Added -P option to specify SSH port number
+
+v0.2 - Some code cleanup
+     - Better VT100 emulation, thanks to Ken Yap <ken_yap@xoommail.com>
+
+v0.1 - First public release

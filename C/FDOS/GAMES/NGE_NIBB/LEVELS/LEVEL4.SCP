@@ -1,0 +1,180 @@
+Level.Title Level_4_-Caves-
+Level.BlockNum 12
+Level.FoodNum 11
+Worm.Start 180 52 15
+
+Block 0
+
+  Width 95
+  Height 15
+  X 32
+  Y 30
+
+Block 1
+
+  Width 95
+  Height 15
+  X 191
+  Y 31
+
+Block 2
+
+  Width 95
+  Height 15
+  X 79
+  Y 80
+
+Block 3
+
+  Width 95
+  Height 15
+  X 191
+  Y 80
+
+Block 4
+
+  Width 95
+  Height 15
+  X 47
+  Y 159
+
+Block 5
+
+  Width 15
+  Height 79
+  X 79
+  Y 80
+
+Block 6
+
+  Width 15
+  Height 95
+  X 175
+  Y 96
+
+Block 7
+
+  Width 8
+  Height 200
+  X 0
+  Y 0
+
+Block 8
+
+  Width 320
+  Height 8
+  X 0
+  Y 0
+
+Block 9
+
+  Width 8
+  Height 200
+  X 312
+  Y 0
+
+Block 10
+
+  Width 320
+  Height 8
+  X 0
+  Y 192
+
+Block 11
+
+  Width 91
+  Height 12
+  X 191
+  Y 179
+
+Food 0
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 117
+  Y 129
+
+Food 1
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 160
+  Y 163
+
+Food 2
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 205
+  Y 164
+
+Food 3
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 205
+  Y 103
+
+Food 4
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 295
+  Y 82
+
+Food 5
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 275
+  Y 16
+
+Food 6
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 195
+  Y 16
+
+Food 7
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 153
+  Y 32
+
+Food 8
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 67
+  Y 16
+
+Food 9
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 14
+  Y 32
+
+Food 10
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 56
+  Y 144
+
+
+
+

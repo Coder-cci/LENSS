@@ -1,0 +1,70 @@
+NAME
+    E100PKT 0.3, packet driver for DOS
+
+SYNOPSIS
+    E100PKT <option>
+
+DESCRIPTION
+    E100PKT is a basic packet driver for Intel's 8255x family of
+    Ethernet adapters. It should work with any PCI device that
+    Linux's e100 kernel module (in e100.c) does.
+
+    Options are case-insensitive and must begin with either a / or -.
+    All the program's input and output is in hex without a leading
+    "0x" (e.g. "60" is 96 decimal).
+
+SYSTEM REQUIREMENTS
+    * An IBM PC or compatible
+    * An Intel 80386 or compatible processor
+    * DOS 2 or higher
+    * 2560 bytes of free conventional memory
+    * An Intel E100 Ethernet adapter. That is, a PCI device whose
+      vendor id is 8086 and device id is one of the following:
+
+        1029    103c    1057    1091    27dc
+        1030    103d    1059    1092
+        1031    103e    1064    1093
+        1032    1050    1065    1094
+        1033    1051    1066    1095
+        1034    1052    1067    1209
+        1038    1053    1068    1229
+        1039    1054    1069    2449
+        103a    1055    106a    2459
+        103b    1056    106b    245d
+
+OPTIONS
+    /h
+    /?
+        Show usage.
+    /v
+        Show version.
+    /u
+        Unload the packet driver from memory.
+    /i <int_no>
+        Load the packet driver into memory at the specified software
+        interrupt. Valid interrupt numbers are: 60-66, 68-6f, or
+        7b-7e (inclusive).
+    /d
+        Dump PCI configuration space to E100.PCI
+        Dump EEPROM to E100.EEP
+        Dump CSR to E100.CSR
+
+BUGS
+    * E100PKT cannot be loaded high.
+    * E100PKT uses too much memory.
+    * E100PKT cannot be unloaded if its hardware interrupt vector
+      has been hooked since loading it.
+    * Please send any feedback and bug reports to <sethsimon@sdf.org>.
+
+HOME PAGE
+    gopher://sdf.org/1/users/sethsimon/e100pkt/ has the latest
+    version and links to technical documentation.
+
+COPYRIGHT
+    Copyright (C) 2022, Seth Simon <sethsimon@sdf.org>.
+
+    E100PKT comes with ABSOLUTELY NO WARRANTY. This is free software
+    covered by GNU GENERAL PUBLIC LICENSE 3, and you are welcome to
+    redistribute it under certain conditions. See http://www.gnu.org
+    or COPYING file for details.
+

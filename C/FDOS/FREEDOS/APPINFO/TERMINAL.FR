@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       terminal
+Description: Un petit terminal vt100/ANSI
+Summary:     Un petit terminal vt100/ANSI
+Keywords:    terminal, rs-232, vt100
+End

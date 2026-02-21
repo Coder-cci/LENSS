@@ -1,0 +1,28 @@
+
+*** Zmiy history file ***
+
+
+Zmiy v0.85.2 [13 Jun 2015]:
+ - added new levels (16 levels total now),
+ - support for CGA cards, using hardware scrolling,
+ - implemented a monochrome display scheme (/mono),
+ - replaced BIOS-controlled video operations by direct memory drawing (faster),
+ - various speed optimizations as to make the game playable on a real 8086 PC,
+ - restoring the original video mode when returning to the DOS,
+ - removed the '/timer=delay' method, since it was never useful anyway,
+ - improved timing code (PIT programming), so the game is much smoother now,
+ - dropped Turbo C in favor of Open Watcom for better interrupt handling,
+ - relicensed from GNU GPL to the "2-clause" BSD license.
+
+Zmiy v0.85.1 [01 Aug 2013]:
+ - added new levels,
+ - added new power saving mechanisms (dos, dpmi, loop),
+ - the default timer mechanism is the INT28h 'DOS idle' call now (was: APM),
+ - the last item (9) is visually eaten like others (was staying on screen),
+ - waiting a short moment when level starts to give the player time to see the
+   game field,
+ - explicitely initalizing 'high intensity' colors via INT10h (DOSBox requires
+   this to display high-intensity backgrounds).
+
+Zmiy v0.85 [29 Jul 2013]:
+ - first public release.

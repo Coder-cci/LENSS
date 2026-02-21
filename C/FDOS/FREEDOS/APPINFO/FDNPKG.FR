@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       FDNPKG
+Description: Gestionnaire de paquets compatible r‚seau
+Keywords:    fdnpkg, mise … jour, paquets
+End

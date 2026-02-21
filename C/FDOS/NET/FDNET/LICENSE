@@ -1,0 +1,27 @@
+The FDNet Package consists of various open source licensed programs. Those
+programs are not part of FDNet. Nor are those programs under the License
+as FDNet. FDNet is simply a batch script that talks to programs in order to
+provide networking support on some instances of FreeDOS.
+
+For your convenience, the FDNet package does include the sources for the
+specific versions of many of the utilities used. For the latest versions of
+those utilities, you should visit their website.
+
+
+    FDNET       GNU General Public License, v1 or later
+
+    MTCP        Michael Brutman, GNU General Public License, version 3
+                http://www.brutman.com/mTCP/mTCP.html
+
+    BERNDPCI    Eric Auer, public domain
+                https://www.auersoft.eu
+
+    NE2000      Russell Nelson, Crynwr Software
+                Mixed   GNU General Public License, version 1
+                        Public domain
+                http://crynwr.com
+
+    PCNTPK      Russell Nelson, Crynwr Software
+                Mixed   GNU General Public License, version 1
+                        Public domain
+                http://crynwr.com

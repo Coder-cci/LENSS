@@ -1,0 +1,62 @@
+; ษอออออออออออออออออออออออออออออออออออออออออออออออป
+; บ  Script-File fr MakHiSET			  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ  Chipsatz: OPTi 386WB   82C391, 82C392	  บ
+; บ	       OPTi 486SXWB 82C493/5, 82C392	  บ
+; บ  nicht getestet !				  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ  Blendet im Bereich C800h:0 - EFFFh:0 RAM ein บ
+; บ  und initialisiert dieses mit 00h.		  บ
+; บ  (Einstellung fr VGA-Karte bei C000h-C7FFh)  บ
+; ฬอออออออออออออออออออออออออออออออออออออออออออออออน
+; บ		(C) 1993 by JVP			  บ
+; ศอออออออออออออออออออออออออออออออออออออออออออออออผ
+
+;	Fr Startmeldung des Treibers
+MESSAGE		=	OPTi 386WB & 486SXWB, UMBs C800h-EFFFh
+
+;	NMI abschalten bis alles fertig ist
+NMI		=	OFF
+
+;	Werte fr Index- und Datenport
+INDEXPORT	=	22h		; entspricht default
+DATAPORT	=	24h		; entspricht default
+
+;	Segments D000h - EFFFh Shadow RAM enable
+INDEX		=	23h
+DATA		=	11111111b
+;			ณณณณณณณภD000h	\
+;			ณณณณณณภD400h	 \
+;			ณณณณณภD800h	  \
+;			ณณณณภDC00h	   \ 0=disable
+;			ณณณภE000h	   / 1=enable
+;			ณณภE400h	  /
+;			ณภE800h		 /
+;			ภEC00h		/
+
+;	Segments C800h - CFFFh Shadow RAM enable, Write Protect disable
+INDEX		=	26h
+DATA		=	x0011100b
+;			 ณณณณณณภC000h	\
+;			 ณณณณณภC400h	 \ 0=disable
+;			 ณณณณภC800h	 / 1=enable
+;			 ณณณภCC00h	/
+;			 ณณภ1=enable Shadow RAM as spec by Bits 0..3
+;			 ณภ0=RAM is r/w
+;			 ภ0=read/Write AT bus
+
+; Write Protect D000h - EFFFh disable
+INDEX		=	22h
+DATA		=	x1100xxxb
+;			 ณณณภ0=Write Protect E000h-EFFFh disable
+;			 ณณภ0=Write Protect D000h-DFFFh disable
+;			 ณภ1=Shadow RAM E000h-EFFFh enable
+;			 ภ1=Shadow RAM D000h-DFFFh enable
+
+; Segmente C800h - EFFFh einschlieแlich mit 00h initialisieren
+RAMINIT		=	C800h - EFFFh
+
+; fertig, NMI wieder zulassen
+NMI		=	ON
+
+; Quelle: c't 4/93 S.278

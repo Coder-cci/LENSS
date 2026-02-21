@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       NewSNUZ
+Description: Lecteur Usenet (NNTP) bas‚ sur WatTCP
+Keywords:    nntp,usenet
+End

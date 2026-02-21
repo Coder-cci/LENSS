@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       shext
+Description: Extenseur de partage (Share)
+Keywords:    extension share
+End

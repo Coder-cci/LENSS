@@ -1,0 +1,6 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       FreeCom
+Description: Le shell de commande de FreeDOS
+Keywords:    freecom freedos command shell
+End

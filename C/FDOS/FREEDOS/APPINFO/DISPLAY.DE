@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       DISPLAY
+Description: Treiber fÅrs Codepage-Management.
+Summary:     FreeDOS Treiber fÅrs Codepage-Management (Bildschirm oder Drucker).
+Keywords:    Display, EGA, VGA, NLS, CPI, CPX
+End

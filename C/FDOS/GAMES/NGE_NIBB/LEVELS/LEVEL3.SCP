@@ -1,0 +1,134 @@
+Level.Title Level_3_-Stairs-
+Level.BlockNum 10
+Level.FoodNum 7
+Worm.Start 180 52 15
+
+Block 0
+
+  Width 95
+  Height 15
+  X 30
+  Y 36
+
+Block 1
+
+  Width 95
+  Height 15
+  X 79
+  Y 68
+
+Block 2
+
+  Width 95
+  Height 15
+  X 127
+  Y 102
+
+Block 3
+
+  Width 15
+  Height 95
+  X 30
+  Y 69
+
+Block 4
+
+  Width 15
+  Height 95
+  X 252
+  Y 68
+
+Block 5
+
+  Width 8
+  Height 200
+  X 0
+  Y 0
+
+Block 6
+
+  Width 320
+  Height 8
+  X 0
+  Y 0
+
+Block 7
+
+  Width 8
+  Height 200
+  X 312
+  Y 0
+
+Block 8
+
+  Width 320
+  Height 8
+  X 0        
+  Y 192
+
+Block 9
+
+  Width 91
+  Height 12
+  X 191
+  Y 179
+
+Food 0
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 290
+  Y 103
+
+Food 1
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 70
+  Y 20
+
+Food 2
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 149
+  Y 51
+
+Food 3
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 18
+  Y 125
+
+Food 4
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 290
+  Y 24
+
+Food 5
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 104
+  Y 110
+
+Food 6
+
+  File art/grape.spr
+  Width 12
+  Height 16
+  X 65
+  Y 78
+
+
+
+

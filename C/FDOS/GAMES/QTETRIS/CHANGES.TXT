@@ -1,0 +1,102 @@
+2002-02-26  David A. Capello
+
+	* New release 1.4.1 with Allegro 4.0.
+	* Renamed all text files to `.txt' format.
+	* Fixed a bug in playgame.c: it was calling `create_bitmap(0, 0)'.
+	* New --config option: to specify an alternative config file.
+
+2001-10-16  David A. Capello
+
+	* New release 1.4: then a long time, fixed a fatal error in the
+	  previous distribution: I was forget `makedata.sh' :o)
+	* Replaced the old interface fix* to fix.sh and fix.bat.
+
+2001-10-09  David A. Capello
+
+	* Optimized: the arguments recognition.
+
+2001-09-12  David A. Capello
+
+	* Done the documents translation (few ones).
+
+2001-09-11  David A. Capello
+
+	* Done `merge_records()' in `hallfame.c'.
+	* Removed all tabulators (which big change! :-)
+	* Added some MUSIC_* macros: like MUSIC_FIRST and MUSIC_LAST,
+	  all for facility the code reading and the modify of the code
+	  (by Marco Chiesi).
+
+2001-09-10  David A. Capello
+
+	* New options in the command line: --merge for mix `.hof' files,
+	  and the more important: --resolution for can use the game in
+	  *any* resolution of 8 bpp (removed this entry in the TODO list).
+	* A new option in the menu `OPTIONS/CONTROLS/PLAYER*'.
+	* Fixed a error (reported by Marco Chiesi) with the new Allegro
+	  versions: in the control configuration menu, because the new	
+	  clear_keybuf() doesn't delete the key[] and _key[] arrays, so
+	  they should be "cleaned" manually.
+
+2001-06-27  David A. Capello
+
+	* New release 1.3.1: the packages src and dat.
+	* Fixed some makefile* and fix*.
+
+2001-06-17  David A. Capello
+
+	* Finished the translation: TODO.en and CHANGES.en.
+
+2001-06-16  David A. Capello
+
+	* Modified the form of creating the data file: now it is necessary
+	  to use makedata.bat and makedata.sh, with this some problems are
+	  eliminated that had the makefiles with the dependences of the
+	  data.h.
+	* Modified the documentation: ready the translation of AUTHORS.es
+	  and THANKS.es, fixed the README a little.
+	* Eduard Bloch apparently will be the one in charge of packing the
+	  game for the Debian distributions.
+
+2001-06-15  David A. Capello
+
+	* Eliminated the readkey() at the end of the game: in some platforms
+	  it was the black screen without anything (and it became confused)
+	  (recommended by Eduard Bloch).
+
+2001-06-07  David A. Capello
+
+	* All the packages to ZIP format (to look at makefile.pak): the help
+	  of how to decompress files .tar.gz was eliminated.
+
+2001-06-03  David A. Capello
+
+	* Modified in `main.c' the usage() and some things when recognizing
+	  the arguments.
+	* Eliminated a static variable `game_over' in `credits.c': was not
+	  it used for absolutely ANYTHING (it's strange, not?).
+	* Optimized `credits.c': the form of managing the list of lines that
+	  they should go appearing in the screen.
+	* I cleaned the code a little: eliminated some TABs.
+	* Eliminated of all the files of source code the version of the game:
+	  this would make but rather in each new version all the files should
+	  modify.
+	* The src, dos and win packages are in ZIP format: now that I got the
+	  utility InfoZIP for MSDOS (it was hour :-)
+	* Modified some variables in makefile.pak and the names of the rules:
+	  now they are `src', `dos', etc, without the `pack'.
+
+2001-06-02  David A. Capello
+
+	* Modified: leame.txt and readme.txt to README.es,en, and license.txt
+	  to COPYING.
+	* Attaches: the files CHANGES.es and AUTHORS.es.
+	* An error reported by Norberto Alfredo Bensa: the file
+	  obj/tmpfile.txt was not added in the packages, and also thanks to
+	  him, now in the makefiles normal bars are used (/) to indicate the
+	  route of access of the utility DAT of Allegro.
+
+2001-05-31  David A. Capello
+
+	* Attaches the files makefile.qnx and fixqnx.sh by Angelo Mottola:
+	  now the game also compiles in QNX.

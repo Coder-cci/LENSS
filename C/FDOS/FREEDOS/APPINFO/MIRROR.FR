@@ -1,0 +1,7 @@
+Begin3
+Language:    FR, 850, French (Standard)
+Title:       Mirror
+Description: Enregistre des informations de disque pour une ‚ventuelle r‚cup‚ration de donn‚es
+Summary:     Enregistre des informations au sujet du disque pour une ‚ventuelle r‚cup‚ration de donn‚es.
+Keywords:    freedos
+End

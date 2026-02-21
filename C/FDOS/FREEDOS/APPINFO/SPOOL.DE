@@ -1,0 +1,7 @@
+Begin3
+Language:    DE, 850, German (Standard)
+Title:       Spool
+Description: Druckt im Hintergrund.
+Summary:     Druckt im Hintergrund. Braucht das DOS-Tool PRINT nicht.
+Keywords:    print, spool, spooler
+End
