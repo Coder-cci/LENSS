@@ -1,4 +1,4 @@
-@ECHO OFF
+@ECHO OFFf
 REM - Updated AUTOEXEC file, for 386 or better hardware
 
 REM - set basic environment
