@@ -2,7 +2,6 @@
 REM - Updated AUTOEXEC file, for 386 or better hardware
 
 REM - set basic environment
-
 set DOSDRV=C:
 set DOSDIR=C:\FDOS\FreeDOS
 
@@ -93,7 +92,7 @@ call %DOSDIR%\BIN\FDASSIST.BAT
 REM - additional customization and local settings
 
 set BLASTER=A220 I5 D1 H5 P330
-set DIRCMD=/O:GNE /Y
+set DIRCMD=
 set COPYCMD=/-Y
 
 alias reset=fdisk /reboot
@@ -113,5 +112,8 @@ REM - Display "Welcome to FreeDOS"
 if not exist %DOSDIR%\BIN\WELCOME.BAT goto NOWELCOME
 call %DOSDIR%\BIN\WELCOME.BAT
 :NOWELCOME
+
+if not exist C:\LENSS\LNSAUTO.BAT echo LNSAUTO.BAT NOT FOUND
+call C:\LENSS\LNSAUTO.BAT
 
 :END
