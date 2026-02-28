@@ -5,4 +5,8 @@ REM Пути к компиляторам
 set PATH=%PATH%;C:\LENSS\PROGFLS\SYSTEM\COMPLRS\DJGPP\BIN
 set DJGPP=C:\LENSS\PROGFLS\SYSTEM\COMPLRS\DJGPP\DJGPP.ENV
 
+echo LENSS Auto - Setting aliases...
+
+REM Все алиасы
+
 echo Ready!
